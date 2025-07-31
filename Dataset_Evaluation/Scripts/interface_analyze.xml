@@ -1,0 +1,37 @@
+<!--CYC_BUILDER post processes design protocol-->
+<ROSETTASCRIPTS>
+
+    <SCOREFXNS>
+        <!--Default score function-->
+        <ScoreFunction name="score" weights="ref2015"/>
+    </SCOREFXNS>
+
+    <RESIDUE_SELECTORS>
+    </RESIDUE_SELECTORS>
+
+    <TASKOPERATIONS>
+    </TASKOPERATIONS>
+    
+
+    <FILTERS>
+        <!--ddG w/ and w/o repack/min-->
+        <Ddg name="ddg"  threshold="-25" jump="1" repeats="5" repack="1" confidence="0" scorefxn="score"/>
+        <Ddg name="ddg_norepack"  threshold="-25" jump="1" repeats="1" repack="0" confidence="0" scorefxn="score"/>
+    </FILTERS>
+    
+    <MOVERS>
+    </MOVERS>
+    <APPLY_TO_POSE>
+    </APPLY_TO_POSE>
+    <PROTOCOLS>
+        <Add filter="ddg_norepack"/>
+    </PROTOCOLS>
+</ROSETTASCRIPTS>
+
+
+
+
+
+
+
+
