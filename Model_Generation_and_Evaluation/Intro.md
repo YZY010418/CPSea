@@ -14,22 +14,20 @@ We re-trained three target-conditioned peptide design models in our work, namely
 1. move `ModifyModels/run_inference_new.py` into the {DiffPepBuilder}/experiments directory
 2. move `ModifyModels/batch_generate.py` into the {PepGlad} directory
 
+Now that we are ready for the following steps.
+
 ## Step 1: Data preparation
 
-We have pre-processed the input complexes from LNR and CPSet, renaming the binder chain as L chain. After that,
-initial complexes are transformed to formats that are compatible with the three models by `generate_input.py`
+We have pre-processed the input complexes from LNR and CPSet into `complexes` and `receptors`.
 
-```
-python generate_input.py -i <original_pdb_dir> -o <output_dir>
-```
+* The `complexes` folder stores complexes separately in subfolders, with receptors named `pocket.pdb` and binders named `peptide.pdb`.
+* The `receptors` folder stores receptors in initial complexes.
 
-The scripts will generate two folders in <output_dir>. The `complexes` folder stores initial complexes separately in subfolders, with receptors named `pocket.pdb` and binders named `peptide.pdb`. The `receptors` folder stores receptors in initial complexes. This is the format of the PepMerge dataset in the PepFlow paper.
+This is the format of the PepMerge dataset in the PepFlow paper. The pre-processed data are stored in `TestSet/LNR` and `TestSet/CPSet`.
 
-## Step 2: Inference
+On top of this, we need to define epitope for each target, which can be achieved as follows:
 
-### 2.1 DiffPepBuilder
-
-**First, define epitopes**
+1. For DiffPepBuilder, run
 
 ```
 python generate_epitopes.py -i <complex_dir> -o epitopes.json
@@ -37,29 +35,7 @@ python generate_epitopes.py -i <complex_dir> -o epitopes.json
 
 This generates a json file containing epitope information for each receptor in the format required by DiffPepBuilder
 
-**Then, process data**
-
-```
-python {path_to_diffpepbuilder}/experiments/process_receptor.py --pdb_dir {path_to_data}/receptors --write_dir {path_to_diffpepbuilder}/data/receptor_data --receptor_info_path {path_to_data}/epitopes.json
-```
-
-This will generate .pkl files for each target.
-
-**Next**, we can do inference to generate *pseudo* cyclic peptides (Because we have not modified the model to generate cyclic peptides directly, the outputs of these re-trained models are actually linear peptides with their terminals close to each other)
-
-In our manuscript, we let models generate peptides with the same length as in initial complexes. To do this more easily, we modified the run_inference.py by adding a hard-coded path to a csv file that contains desired length for each target, which is in line 288 in `run_inference_new.py`.
-
-After adding the csv file path, you can run:
-
-```
-export BASE_PATH={path_to_diffpepbuilder}
-torchrun --nproc-per-node=1 experiments/run_inference_new.py data.val_csv_path=data/receptor_data/metadata_test.csv
-```
-
-### 2.2 PepFlow
-
-PepFlow seems don't cut out epitopes of receptors during generation, making it easy to occur OOM error. To avoid this, 
-first run:
+2. For PepFlow, because the model could not extract epitopes, we need to make epitope structures mannually, which can be done by:
 
 ```
 python Flow_pocket_dealer.py <old_complex_dir> <new_complex_dir>
@@ -67,13 +43,46 @@ python Flow_pocket_dealer.py <old_complex_dir> <new_complex_dir>
 
 This will generate a new folder in which the pocket.pdb contains only the epitope.
 
-**To define epitopes**, first generate a list file consists of subfolder names in {new_complex_dir} folder. Then, modify 
+3. For PepGlad, what we need to do is simply change the format of the `epitopes.json` file generated above. 
+
+```
+python transform_json.py -i <epitopes.json> -o <epitopes_glad.json>
+```
+
+## Step 2: Inference
+
+During inference, don't forget to change checkpoints into the re-trained versions, as provided in [Kaggle](https://www.kaggle.com/datasets/ziyiyang180104/cpsea).
+
+### 2.1 DiffPepBuilder
+
+First, process the receptor data
+
+```
+python {path_to_diffpepbuilder}/experiments/process_receptor.py --pdb_dir {path_to_data}/receptors --write_dir {path_to_diffpepbuilder}/data/receptor_data --receptor_info_path {path_to_data}/epitopes.json
+```
+
+This will generate .pkl files for each target.
+
+Next, we can do inference to generate *pseudo* cyclic peptides (Because we have not modified the model to generate cyclic peptides directly, the outputs of these re-trained models are actually linear peptides with their terminals close to each other)
+
+In our manuscript, we let models generate peptides with the same length as in initial complexes. To do this more easily, we modified the run_inference.py by adding a csv file input, named `run_inference_new.py`.
+
+The csv file should have two columns, the first column with the title "pdb_names", and the second column with the title "length".
+
+```
+export BASE_PATH={path_to_diffpepbuilder}
+torchrun --nproc-per-node=1 experiments/run_inference_new.py data.val_csv_path=data/receptor_data/metadata_test.csv --csv_path <the_length_csv>
+```
+
+### 2.2 PepFlow
+
+First, process the receptor data. A list file consists of subfolder names in {new_complex_dir} folder is needed. Then, modify 
 `models_con/pep_dataloader.py` as follow: 
 
 1. In line 37, change the list path to the subfolder name list.
 2. In line 213, type in the {new_complex_dir} folder path in structure_dir, and the place you want to save the dataset in dataset_dir.
    Also, change the name to whatever you like.
-3. The script will not make the directory itself, so we need to make the dataset_dir ourselves.
+3. NOTE: The script **will not** make the directory itself, so we need to make the dataset_dir ourselves.
    
 Then, run:
 
@@ -81,15 +90,15 @@ Then, run:
 python models_con/pep_dataloader.py
 ```
 
-**Now, we can do inference**. First, modify `configs/learn_angle.yaml`, change the structure_dir, dataset_dir and name of the 
-generate dataset. Second, make an output diectory. Then run:
+Now, we can do inference. First, modify `configs/learn_angle.yaml`, change the structure_dir, dataset_dir and name of the 
+generate dataset. Second, make an output diectory (since the script does not create the directory itself). Then run:
 
 ```
 python models_con/inference.py --config configs/learn_angle.yaml  --device cuda:0 --ckpt path/to/retrained/ckpt --output output/path \
 --num_samples 100
 ```
 
-**Finally, we can do sampling**.
+Finally, we can do sampling.
 
 ```
 python models_con/sample.py --SAMPLEDIR output/path/of/inference
@@ -97,22 +106,10 @@ python models_con/sample.py --SAMPLEDIR output/path/of/inference
 
 ### 2.3 PepGlad
 
-**To define epitopes**, we simply use the json file generated for DiffPepBuilder, but in a different format:
+It is very simple to run PepGlad. Similar to DiffPepBuilder, we still need a csv file containing "pdb_names" and "length" columns.
 
 ```
-python transform_json.py -i {epitope_json_for_DiffPepBuilder} -o {dir_for_epitope_json_of_PepGlad}
-```
-
-Now that we can generate by running `batch_generate.py`, modify following content:
-
-1. In line 7, type in the path to the length csv
-2. Update input_dir, pocket_dir, and output_dir. Input_dir is the receptor directory generated in Step 1, pocket_dir is the json
-directory above.
-
-Then, run:
-
-```
-python batch_generate.py
+python batch_generate.py --length_csv <length_csv> --input_dir <receptor_PDB_dir> --pocket_dir <transformed_json> --output_dir <out_dir>
 ```
 
 ## Step 3: Post-processing
@@ -132,7 +129,7 @@ python rename_flow.py -i flow_generated
 python rename_diff.py -i diff_generated
 ```
 
-These would generate the renamed folders.
+These would generate the renamed folders. 
 
 ### 3.2 Cyclization and Relax
 
@@ -167,16 +164,19 @@ python combine_epitope.py --generated glad_cutpocket --receptors CPSet/clean_rec
 --output glad_reconstructed
 ```
 
-Now we can calculate the success rate for cyclization. Then, we calculate both CB distance and length, as inputs for cyclization and relax:
-(needs change path prefix)
+Now we can calculate the success rate for cyclization. Then, we calculate both CB distance and length, as inputs for cyclization and relax. Please use absolute path here, because the relax script relies on this information to find the file.
 
 ```
-python cb_distance_and_length.py CPSet_Diff/diff_reconstructed CPSet_Diff/CPSet_Diff_CB_length.csv
-python cb_distance_and_length.py CPSet_Flow/flow_reconstructed CPSet_Flow/CPSet_Flow_CB_length.csv
-python cb_distance_and_length.py CPSet_Glad/glad_reconstructed CPSet_Glad/CPSet_Glad_CB_length.csv
+python cb_distance_and_length.py {abs_path}/CPSet_Diff/diff_reconstructed CPSet_Diff/CPSet_Diff_CB_length.csv
+python cb_distance_and_length.py {abs_path}/CPSet_Flow/flow_reconstructed CPSet_Flow/CPSet_Flow_CB_length.csv
+python cb_distance_and_length.py {abs_path}/CPSet_Glad/glad_reconstructed CPSet_Glad/CPSet_Glad_CB_length.csv
 ```
 
 Then run `relax_mp_model.py`, change the file paths and configs in the script.
+
+```
+python relax_mp_model.py
+```
 
 After running this, we re-combine the cyclic peptides and their full-length receptors by running:
 
@@ -186,7 +186,7 @@ python combine_receptor.py --relaxed flow_relaxed/ --receptors ../../evaluate_da
 python combine_receptor.py --relaxed glad_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output glad_full
 ```
 
-Now that we finished the target-conditioned cyclic peptide generation!
+😉 Now that we finished the target-conditioned cyclic peptide generation!
 
 ## Step 4: Evaluation
 
