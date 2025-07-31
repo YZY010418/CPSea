@@ -29,8 +29,54 @@ In which are CPSea datasets derived from AFDB and PDB.
 
 `python Dataset_Evaluation/rama_analysis.py -i <PDB_path_list> -o <Rama_output> -c <cores>`
 
-The input should be a list file containing paths to PDB in each line. This script will generate a CSV file that contains the proportion of each structure's Ramachandran angles falling into the Allowed and Favoured regions.
+The input should be a list file containing paths to PDB in each line, and the same for the following scripts. This script will generate a CSV file that contains the proportion of each structure's Ramachandran angles falling into the Allowed and Favoured regions.
 
 **For PLIP analysis** on interface interaction distribution, run:
 
-``
+`python Dataset_Evaluation/plip_analysis.py -i <PDB_path_list> -o <PlIP_output> -c <cores>`
+
+This will generate a CSV file that stores the counts of various types of identified interactions in the interface of each structure. To obtain statistical information, run:
+
+`python plip_handeler.py <PlIP_output>`
+
+This will generate a CSV file, whose name is the PLIP output file name with an additional "_stats" suffix, which stores statistical information on the aforementioned PLIP analysis results and records the proportions of various types of interactions.
+
+### Binding Affinity
+
+**For Rosetta ddG**, run:
+
+'python rosetta_analysis.py -i <PDB_path_list> -o <Rosetta_sc> -c <cores>'
+
+This will generate a JSON file that records Rosetta's output. We can extract the ddG information from it using the following script:
+
+`python ddG_extractor.py -i <Rosetta_sc> -o <Rosetta_csv>`
+
+This will generate a CSV file that clearly records the Rosetta ddG for each structure.
+
+**For Vina score**, run:
+
+`python vina_analysis.py -i <PDB_path_list> -o <Vina_out> -c <cores>`
+
+This will generate a CSV file that stores the Vina affinity scores for each structure, in the "score only" mode without re-docking and optimization.
+
+### Wet-lab Compatibility
+
+Metrics including GRAVY, logP, rTPSA can be calculated by running:
+
+`python water_or_oil.py -i <PDB_path_list> -o <WoO_out> -c <cores> --chain_id <chain_id>`
+
+`python GRAVY_calculator.py -i <PDB_path_list> -o <GRAVY_out> -c <cores> --chain_id <chain_id>`
+
+All results for these metrics are in the output CSV files.
+
+### Designability, Diversity and Novelty
+
+We employed [**HighFold2**](https://github.com/hongliangduan/HighFold2) and [**Foldseek-multimer**](https://github.com/steineggerlab/foldseek) for these evaluation. 
+
+**Designability**
+
+We refold the head-tail and disulfide cyclic peptides using HighFold2 without MSA input. Herein, we provide a script to generate HighFold2 inputs from PDB files.
+
+
+
+
