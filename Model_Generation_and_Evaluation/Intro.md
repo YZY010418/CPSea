@@ -11,8 +11,8 @@ CPSea: Large-scale cyclic peptide-protein complex dataset for machine learning i
 
 We re-trained three target-conditioned peptide design models in our work, namely [DiffPepBuilder](https://github.com/YuzheWangPKU/DiffPepBuilder), [PepFlow](https://github.com/Maikuraky/PepFlow), and [PepGLAD](https://github.com/THUNLP-MT/PepGLAD). First, please install the three models following their guidance. Then, change these files:
 
-1. move `ModifyModels/DiffPepBuilder/run_inference_new.py` into the DiffPepBuilder directory
-2. 
+1. move `ModifyModels/run_inference_new.py` into the DiffPepBuilder directory
+2. move `ModifyModels/batch_generate.py` into the PepGlad directory
 
 ## Step 1: Data preparation
 
