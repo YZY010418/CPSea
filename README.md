@@ -81,6 +81,6 @@ We have attempted to use AF3 and Boltz for the refolding of cyclic isopeptides, 
 
 `python generate_AF3_input.py -i <pdb_dir> -o <json_dir> -t AF3_template.json`
 
-`python generate_Boltz_input.py -i <pdb_dir> -o <yaml_dir> -t Boltz_template.json`
+`python generate_Boltz_input.py -i <pdb_dir> -o <yaml_dir> -t Boltz_template.yaml`
 
 For scRMSD calculation, we provide a script for automatical comparasion and calculation.
