@@ -1,0 +1,217 @@
+<!--version 250421-->
+<ForceField>
+  <Residues>
+    <Residue name="NME"> <!-- Parameters are copied from Patch: CT3 -->
+      <Atom charge="-0.47" name="N" type="NH1"/>
+      <Atom charge="0.31" name="HN" type="H"/>
+      <Atom charge="-0.11" name="CA" type="CT3"/>
+      <Atom charge="0.09" name="HB1" type="HA3"/>
+      <Atom charge="0.09" name="HB2" type="HA3"/>
+      <Atom charge="0.09" name="HB3" type="HA3"/>
+      <Bond atomName1="N" atomName2="HN"/>
+      <Bond atomName1="N" atomName2="CA"/>
+      <Bond atomName1="CA" atomName2="HB1"/>
+      <Bond atomName1="CA" atomName2="HB2"/>
+      <Bond atomName1="CA" atomName2="HB3"/>
+      <ExternalBond atomName="N"/>
+    </Residue>
+    <Residue name="ACE"> <!-- Parameters are copied from Patch: ACE -->
+      <Atom charge="-0.27" name="CA" type="CT3"/>
+      <Atom charge="0.09" name="HB1" type="HA3"/>
+      <Atom charge="0.09" name="HB2" type="HA3"/>
+      <Atom charge="0.09" name="HB3" type="HA3"/>
+      <Atom charge="0.51" name="C" type="C"/>
+      <Atom charge="-0.51" name="O" type="O"/>
+      <Bond atomName1="C" atomName2="CA"/>
+      <Bond atomName1="CA" atomName2="HB1"/>
+      <Bond atomName1="CA" atomName2="HB2"/>
+      <Bond atomName1="CA" atomName2="HB3"/>
+      <Bond atomName1="O" atomName2="C"/>
+      <ExternalBond atomName="C"/>
+    </Residue>
+    <Residue name="ASPA"> <!-- refer to mainchain amide and ASN -->
+      <Atom charge="-0.47" name="N" type="NH1"/>
+      <Atom charge="0.31" name="HN" type="H"/>
+      <Atom charge="0.07" name="CA" type="CT1"/>
+      <Atom charge="0.09" name="HA" type="HB1"/>
+      <Atom charge="-0.18" name="CB" type="CT2"/>
+      <Atom charge="0.09" name="HB1" type="HA2"/>
+      <Atom charge="0.09" name="HB2" type="HA2"/>
+      <Atom charge="0.51" name="CG" type="C"/>
+      <Atom charge="-0.51" name="OD1" type="O"/>
+      <Atom charge="0.51" name="C" type="C"/>
+      <Atom charge="-0.51" name="O" type="O"/>
+      <Bond atomName1="CB" atomName2="CA"/>
+      <Bond atomName1="CG" atomName2="CB"/>
+      <Bond atomName1="N" atomName2="HN"/>
+      <Bond atomName1="N" atomName2="CA"/>
+      <Bond atomName1="C" atomName2="CA"/>
+      <Bond atomName1="CA" atomName2="HA"/>
+      <Bond atomName1="CB" atomName2="HB1"/>
+      <Bond atomName1="CB" atomName2="HB2"/>
+      <Bond atomName1="O" atomName2="C"/>
+      <Bond atomName1="CG" atomName2="OD1"/>
+      <ExternalBond atomName="N"/>
+      <ExternalBond atomName="C"/>
+      <ExternalBond atomName="CG"/>
+      <AllowPatch name="NTER"/>
+      <AllowPatch name="CTER"/>
+    </Residue>
+    <Residue name="LYSA"> <!-- refer to KAC patch and main chain amide -->
+      <Atom charge="-0.47" name="N" type="NH1"/>
+      <Atom charge="0.31" name="HN" type="H"/>
+      <Atom charge="0.07" name="CA" type="CT1"/>
+      <Atom charge="0.09" name="HA" type="HB1"/>
+      <Atom charge="-0.18" name="CB" type="CT2"/>
+      <Atom charge="0.09" name="HB1" type="HA2"/>
+      <Atom charge="0.09" name="HB2" type="HA2"/>
+      <Atom charge="-0.18" name="CG" type="CT2"/>
+      <Atom charge="0.09" name="HG1" type="HA2"/>
+      <Atom charge="0.09" name="HG2" type="HA2"/>
+      <Atom charge="-0.18" name="CD" type="CT2"/>
+      <Atom charge="0.09" name="HD1" type="HA2"/>
+      <Atom charge="0.09" name="HD2" type="HA2"/>
+      <Atom charge="-0.02" name="CE" type="CT2"/>
+      <Atom charge="0.09" name="HE1" type="HA2"/>
+      <Atom charge="0.09" name="HE2" type="HA2"/>
+      <Atom charge="-0.47" name="NZ" type="NH1"/>
+      <Atom charge="0.31" name="HZ1" type="H"/>
+      <Atom charge="0.51" name="C" type="C"/>
+      <Atom charge="-0.51" name="O" type="O"/>
+      <Bond atomName1="CB" atomName2="CA"/>
+      <Bond atomName1="CG" atomName2="CB"/>
+      <Bond atomName1="CD" atomName2="CG"/>
+      <Bond atomName1="CE" atomName2="CD"/>
+      <Bond atomName1="NZ" atomName2="CE"/>
+      <Bond atomName1="N" atomName2="HN"/>
+      <Bond atomName1="N" atomName2="CA"/>
+      <Bond atomName1="C" atomName2="CA"/>
+      <Bond atomName1="CA" atomName2="HA"/>
+      <Bond atomName1="CB" atomName2="HB1"/>
+      <Bond atomName1="CB" atomName2="HB2"/>
+      <Bond atomName1="CG" atomName2="HG1"/>
+      <Bond atomName1="CG" atomName2="HG2"/>
+      <Bond atomName1="CD" atomName2="HD1"/>
+      <Bond atomName1="CD" atomName2="HD2"/>
+      <Bond atomName1="CE" atomName2="HE1"/>
+      <Bond atomName1="CE" atomName2="HE2"/>
+      <Bond atomName1="O" atomName2="C"/>
+      <Bond atomName1="NZ" atomName2="HZ1"/>
+      <ExternalBond atomName="N"/>
+      <ExternalBond atomName="C"/>
+      <ExternalBond atomName="NZ"/>
+      <AllowPatch name="NTER"/>
+      <AllowPatch name="CTER"/>
+    </Residue>
+    <Residue name="GLUA"> <!-- Parameters are not revised carefully -->
+      <Atom charge="-0.47" name="N" type="NH1"/>
+      <Atom charge="0.31" name="HN" type="H"/>
+      <Atom charge="0.07" name="CA" type="CT1"/>
+      <Atom charge="0.09" name="HA" type="HB1"/>
+      <Atom charge="-0.18" name="CB" type="CT2A"/>
+      <Atom charge="0.09" name="HB1" type="HA2"/>
+      <Atom charge="0.09" name="HB2" type="HA2"/>
+      <Atom charge="-0.28" name="CG" type="CT2"/>
+      <Atom charge="0.09" name="HG1" type="HA2"/>
+      <Atom charge="0.09" name="HG2" type="HA2"/>
+      <Atom charge="0.62" name="CD" type="C"/>
+      <Atom charge="-0.76" name="OE1" type="O"/>
+      <Atom charge="0.51" name="C" type="C"/>
+      <Atom charge="-0.51" name="O" type="O"/>
+      <Bond atomName1="CB" atomName2="CA"/>
+      <Bond atomName1="CG" atomName2="CB"/>
+      <Bond atomName1="CD" atomName2="CG"/>
+      <Bond atomName1="N" atomName2="HN"/>
+      <Bond atomName1="N" atomName2="CA"/>
+      <Bond atomName1="C" atomName2="CA"/>
+      <Bond atomName1="CA" atomName2="HA"/>
+      <Bond atomName1="CB" atomName2="HB1"/>
+      <Bond atomName1="CB" atomName2="HB2"/>
+      <Bond atomName1="CG" atomName2="HG1"/>
+      <Bond atomName1="CG" atomName2="HG2"/>
+      <Bond atomName1="O" atomName2="C"/>
+      <Bond atomName1="CD" atomName2="OE1"/>
+      <ExternalBond atomName="N"/>
+      <ExternalBond atomName="C"/>
+      <ExternalBond atomName="CD"/>
+      <AllowPatch name="NTER"/>
+      <AllowPatch name="CTER"/>
+    </Residue>
+    <Residue name="CYSC"> <!-- refer to disu patch -->
+      <Atom charge="-0.47" name="N" type="NH1"/>
+      <Atom charge="0.31" name="HN" type="H"/>
+      <Atom charge="0.07" name="CA" type="CT1"/>
+      <Atom charge="0.09" name="HA" type="HB1"/>
+      <Atom charge="-0.1" name="CB" type="CT2"/>
+      <Atom charge="0.09" name="HB1" type="HA2"/>
+      <Atom charge="0.09" name="HB2" type="HA2"/>
+      <Atom charge="-0.08" name="SG" type="SM"/>
+      <Atom charge="0.51" name="C" type="C"/>
+      <Atom charge="-0.51" name="O" type="O"/>
+      <Bond atomName1="CB" atomName2="CA"/>
+      <Bond atomName1="SG" atomName2="CB"/>
+      <Bond atomName1="N" atomName2="HN"/>
+      <Bond atomName1="N" atomName2="CA"/>
+      <Bond atomName1="C" atomName2="CA"/>
+      <Bond atomName1="CA" atomName2="HA"/>
+      <Bond atomName1="CB" atomName2="HB1"/>
+      <Bond atomName1="CB" atomName2="HB2"/>
+      <Bond atomName1="O" atomName2="C"/>
+      <ExternalBond atomName="N"/>
+      <ExternalBond atomName="C"/>
+      <ExternalBond atomName="SG"/>
+      <AllowPatch name="NTER"/>
+      <AllowPatch name="CTER"/>
+    </Residue>
+    <Residue name="TMB">
+      <!-- 1,3,5-trimethylbenezene with the methyl connecting to other atoms -->
+      <Atom charge="0.0" name="CG" type="CA"/>
+      <Atom charge="-0.115" name="CD1" type="CA"/>
+      <Atom charge="0.115" name="HD1" type="HP"/>
+      <Atom charge="-0.115" name="CD2" type="CA"/>
+      <Atom charge="0.115" name="HD2" type="HP"/>
+      <Atom charge="0.0" name="CE1" type="CA"/>
+      <Atom charge="0.0" name="CE2" type="CA"/>
+      <Atom charge="-0.115" name="CZ" type="CA"/>
+      <Atom charge="0.115" name="HZ" type="HP"/>
+      <!-- methyl 1 -->
+      <Atom charge="-0.18" name="CM1" type="CT2"/>
+      <Atom charge="0.09" name="H11" type="HA2"/>
+      <Atom charge="0.09" name="H12" type="HA2"/>
+      <!-- methyl 2 -->
+      <Atom charge="-0.18" name="CM2" type="CT2"/>
+      <Atom charge="0.09" name="H21" type="HA2"/>
+      <Atom charge="0.09" name="H22" type="HA2"/>
+      <!-- methyl 3 -->
+      <Atom charge="-0.18" name="CM3" type="CT2"/>
+      <Atom charge="0.09" name="H31" type="HA2"/>
+      <Atom charge="0.09" name="H32" type="HA2"/>
+      <!-- bonds for benezene -->
+      <Bond atomName1="CD1" atomName2="CG"/>
+      <Bond atomName1="CD2" atomName2="CG"/>
+      <Bond atomName1="CE1" atomName2="CD1"/>
+      <Bond atomName1="CE2" atomName2="CD2"/>
+      <Bond atomName1="CZ" atomName2="CE1"/>
+      <Bond atomName1="CZ" atomName2="CE2"/>
+      <Bond atomName1="CD1" atomName2="HD1"/>
+      <Bond atomName1="CD2" atomName2="HD2"/>
+      <Bond atomName1="CZ" atomName2="HZ"/>
+      <!-- bonds for methyl 1 -->
+      <Bond atomName1="CM1" atomName2="CG"/>
+      <Bond atomName1="CM1" atomName2="H11"/>
+      <Bond atomName1="CM1" atomName2="H12"/>
+      <!-- bonds for methyl 2 -->
+      <Bond atomName1="CM2" atomName2="CE1"/>
+      <Bond atomName1="CM2" atomName2="H21"/>
+      <Bond atomName1="CM2" atomName2="H22"/>
+      <!-- bonds for methyl 3 -->
+      <Bond atomName1="CM3" atomName2="CE2"/>
+      <Bond atomName1="CM3" atomName2="H31"/>
+      <Bond atomName1="CM3" atomName2="H32"/>
+      <!-- external -->
+      <ExternalBond atomName="CM1"/>
+      <ExternalBond atomName="CM2"/>
+      <ExternalBond atomName="CM3"/>
+    </Residue>
+  </Residues>
+</ForceField>
