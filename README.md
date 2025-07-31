@@ -65,7 +65,7 @@ This will generate a CSV file that clearly records the Rosetta ddG for each stru
 
 **For Vina score**
 
-**Note that** the vina command line in `vina_analysis.py` needs to be changed to fit your installation.
+**Note that** the [Vina](https://vina.scripps.edu) command line in `vina_analysis.py` needs to be changed to fit your installation.
 
 ```
 python Dataset_Evaluation/vina_analysis.py -i <PDB_path_list> -o <Vina_out> -c <cores>
@@ -137,5 +137,9 @@ python check_qtm_max_average.py <out_file> (--ignore_R)
 
 Please check the [intro.md](Model_Generation_and_Evaluation/Intro.md) for details. Related weights for three re-trained models can be downloaded from 
 [**Kaggle**](https://www.kaggle.com/datasets/ziyiyang180104/cpsea).
+
+## Contact
+
+📞 This repository is still under development. If there are any questions about any protocols, please do not hesitate to contact yangzy23@mails.tsinghua.edu.cn. Thank you for your interest in our CPsea!
 
 
