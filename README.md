@@ -2,7 +2,7 @@
 
 🗺️ This GitHub site mainly focuses on scripts and tutorials dataset generation and evaluation, as well as the evaluation of target-conditioned cyclic peptide design models that are trained on CPSea. Check out our [**Kaggle**](https://www.kaggle.com/datasets/ziyiyang180104/cpsea) and [**Zenodo**](https://zenodo.org/records/16417466) sites for clean data, index files and property files.
 
-💡 This GitHub site provides detailed 
+💡 In this repository, we provide scripts and introductions for dataset generation and evaluation, and also how to use re-trained models to generate cyclic peptides and to evaluate the model outputs.
 
 ---
 
@@ -133,7 +133,7 @@ python check_qtm_max_average.py <out_file> (--ignore_R)
 
 ## Model Generation and Evaluation
 
-Please check the [intro.md](Model_Generation_and_Evaluation/intro.md) for details. Related weights for three re-trained models can be downloaded from 
+Please check the [intro.md](Model_Generation_and_Evaluation/Intro.md) for details. Related weights for three re-trained models can be downloaded from 
 [**Kaggle**](https://www.kaggle.com/datasets/ziyiyang180104/cpsea).
 
 
