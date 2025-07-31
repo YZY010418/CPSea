@@ -36,11 +36,10 @@ RAMA_PREFERENCES = {
 
 def _cache_RAMA_PREF_VALUES():
     global RAMA_PREF_VALUES 
-    f_path = "PyRAMA/pyrama"
     RAMA_PREF_VALUES = {}
     for key, val in RAMA_PREFERENCES.items():
         RAMA_PREF_VALUES[key] = np.full((360, 360), 0, dtype=np.float64)
-        with open(os.path.join(f_path, val["file"])) as fn:
+        with open(val["file"]) as fn:
             for line in fn:
                 if line.startswith("#"):
                     continue
