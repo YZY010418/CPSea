@@ -36,7 +36,7 @@ RAMA_PREFERENCES = {
 
 def _cache_RAMA_PREF_VALUES():
     global RAMA_PREF_VALUES 
-    f_path = "/data_hdd/home/yangziyi/Tools/PyRAMA/pyrama"
+    f_path = "PyRAMA/pyrama"
     RAMA_PREF_VALUES = {}
     for key, val in RAMA_PREFERENCES.items():
         RAMA_PREF_VALUES[key] = np.full((360, 360), 0, dtype=np.float64)
