@@ -1,7 +1,15 @@
+⏰ This repository is still under building. We are trying our best to set up everything, and will finish this in 24 hours (by August 1st 20:00, China standard time)
+
+---
+
 😊 hi
 
 This is an introduction for replicating the results of model retraining and evaluation in the manuscript of:
 CPSea: Large-scale cyclic peptide-protein complex dataset for machine learning in cyclic peptide design.
+
+## Step 0: Model setup
+
+We re-trained 
 
 ## Step 1: Data preparation
 
@@ -12,9 +20,8 @@ initial complexes are transformed to formats that are compatible with the three 
 python generate_input.py
 ```
 
-The scripts will generate two folders. The "complexes" folder stores initial complexes separately in subfolders, with
-receptors named `pocket.pdb` and binders named peptide.pdb. The "receptors" folder stores receptors in initial complexes.
-This is the format of the PepMerge dataset in the PepFlow paper.
+The scripts will generate two folders. The **complexes** folder stores initial complexes separately in subfolders, with
+receptors named `pocket.pdb` and binders named `peptide.pdb`. The **receptors** folder stores receptors in initial complexes. This is the format of the PepMerge dataset in the PepFlow paper.
 
 ## Step 2: Inference
 
@@ -31,21 +38,19 @@ This generates a json file containing epitope information for each receptor in t
 **Then, process data**
 
 ```
-python experiments/process_receptor.py --pdb_dir {path_to_data}/receptors --write_dir data/receptor_data --receptor_info_path {path_to_data}/epitopes.json
+python {path_to_diffpepbuilder}/experiments/process_receptor.py --pdb_dir {path_to_data}/receptors --write_dir {path_to_diffpepbuilder}/data/receptor_data --receptor_info_path {path_to_data}/epitopes.json
 ```
 
-This will generate .pkl files in the --write_dir.
+This will generate .pkl files for each target.
 
-**Next**, we can do inference to generate "pseudo" cyclic peptides (Because we have not modified the model to generate cyclic
-peptides directly, the outputs of these re-trained models are actually linear peptides with their terminals close to each other)
+**Next**, we can do inference to generate *pseudo* cyclic peptides (Because we have not modified the model to generate cyclic peptides directly, the outputs of these re-trained models are actually linear peptides with their terminals close to each other)
 
-In our manuscript, we let models generate peptides with the same length as in initial complexes. To do this more easily, we 
-modified the run_inference.py by adding a hard-coded path to a csv file that contains desired length for each target, which is
-in line 288 in `run_inference_new.py`.
+In our manuscript, we let models generate peptides with the same length as in initial complexes. To do this more easily, we modified the run_inference.py by adding a hard-coded path to a csv file that contains desired length for each target, which is in line 288 in `run_inference_new.py`.
 
 After adding the csv file path, you can run:
 
 ```
+export BASE_PATH={path_to_diffpepbuilder}
 torchrun --nproc-per-node=1 experiments/run_inference_new.py data.val_csv_path=data/receptor_data/metadata_test.csv
 ```
 
@@ -55,7 +60,7 @@ PepFlow seems don't cut out epitopes of receptors during generation, making it e
 first run:
 
 ```
-python Flow_pocket_dealer.py {old_complex_dir} {new_complex_dir} 
+python Flow_pocket_dealer.py <old_complex_dir> <new_complex_dir>
 ```
 
 This will generate a new folder in which the pocket.pdb contains only the epitope.
