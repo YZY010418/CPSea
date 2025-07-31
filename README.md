@@ -21,7 +21,7 @@ In which are CPSea datasets derived from AFDB and PDB.
 
 🚧 We will release the soure codes for data generation after publishing our paper ~
 
-## Dataset Evaluation and Subset Curation 
+## Dataset Evaluation
 
 ### Structure Validity
 
@@ -117,9 +117,22 @@ We use foldseek easy-multimercluster and easy-multimersearch to calculate divers
 
 ```
 foldseek easy-multimercluster <dataset_dir> <output_dir>/clu <temp_dir> --alignment-type 2 --cov-mode 0 --min-seq-id 0 --multimer-tm-threshold 0.65 --chain-tm-threshold 0.5 --interface-lddt-threshold 0.65 --threads <threads>
+foldseek easy-multimersearch  <dataset_dir> <path_to_pdb> <output_dir>/out --alignment-type 2 --tmscore-threshold 0.0 --max-seqs 1000 --format-output query,target,complexqtmscore,complexttmscore,lddt --threads <threads>
 ```
 
+Below we provide two codes for calculating the number of clusters and novelty.
 
+```
+python check_unique.py -i <cluster_tsv> -o <unique_list> 
+python check_qtm_max_average.py <out_file> (--ignore_R)
+```
 
+`check_unique.py` generates a list file containing one file from each cluster, so that the number of lines equals to the number of clusters, and the list file can be used as the index of a non-redundant subset.
+
+`check_qtm_max_average.py` outputs the average qTm max in stdout. You can add the --ignore_R argument to exclude receptors in this analysis.
+
+## Model Generation and Evaluation
+
+For 
 
 
