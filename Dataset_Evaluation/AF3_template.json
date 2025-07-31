@@ -1,0 +1,18 @@
+{
+  "name": "test4",
+  "sequences": [
+    {
+      "protein": {
+        "id": "A",
+        "sequence": "CDSFDREC",
+        "unpairedMsa": "" ,
+        "pairedMsa": "",
+        "templates": []
+      }
+    }
+  ],
+  "bondedAtomPairs": [[["A", 1, "NZ"], ["A", 8, "CG"]]],
+  "modelSeeds": [1],
+  "dialect": "alphafold3",
+  "version": 1
+}

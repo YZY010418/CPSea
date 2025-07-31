@@ -1,0 +1,10 @@
+sequences:
+    - protein:
+        id: L
+        sequence: SKGNDEISAMGRAVD
+        msa: empty
+        cyclic: true
+constraints:
+    - bond:
+        atom1: [L, 1, "NZ"]
+        atom2: [L, 15, "CG"]
