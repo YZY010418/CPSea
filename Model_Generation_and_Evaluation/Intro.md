@@ -9,19 +9,20 @@ CPSea: Large-scale cyclic peptide-protein complex dataset for machine learning i
 
 ## Step 0: Model setup
 
-We re-trained 
+We re-trained three target-conditioned peptide design models in our work, namely [DiffPepBuilder](https://github.com/YuzheWangPKU/DiffPepBuilder), [PepFlow](https://github.com/Maikuraky/PepFlow), and [PepGLAD](https://github.com/THUNLP-MT/PepGLAD). First, please install the three models following their guidance. Then, change these files:
+
+
 
 ## Step 1: Data preparation
 
 We have pre-processed the input complexes from LNR and CPSet, renaming the binder chain as L chain. After that,
-initial complexes are transformed to formats that are compatible with the three models by generate_input.py
+initial complexes are transformed to formats that are compatible with the three models by `generate_input.py`
 
 ```
-python generate_input.py
+python generate_input.py -i <original_pdb_dir> -o <output_dir>
 ```
 
-The scripts will generate two folders. The **complexes** folder stores initial complexes separately in subfolders, with
-receptors named `pocket.pdb` and binders named `peptide.pdb`. The **receptors** folder stores receptors in initial complexes. This is the format of the PepMerge dataset in the PepFlow paper.
+The scripts will generate two folders in <output_dir>. The `complexes` folder stores initial complexes separately in subfolders, with receptors named `pocket.pdb` and binders named `peptide.pdb`. The `receptors` folder stores receptors in initial complexes. This is the format of the PepMerge dataset in the PepFlow paper.
 
 ## Step 2: Inference
 
@@ -30,7 +31,7 @@ receptors named `pocket.pdb` and binders named `peptide.pdb`. The **receptors** 
 **First, define epitopes**
 
 ```
-python generate_epitopes.py
+python generate_epitopes.py -i <complex_dir> -o epitopes.json
 ```
 
 This generates a json file containing epitope information for each receptor in the format required by DiffPepBuilder
