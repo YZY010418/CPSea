@@ -77,6 +77,14 @@ We employed [**HighFold2**](https://github.com/hongliangduan/HighFold2) and [**F
 
 We refold the head-tail and disulfide cyclic peptides using HighFold2 without MSA input. Herein, we provide a script to generate HighFold2 inputs from PDB files.
 
+`python generate_HF2_input.py -i <pdb_dir> -o <a3m_dir> (--sort)`
 
+The script read a directory of PDB files, and extract their **chain L** to make corresponding MSA files, saving to a new directory. The MSA directory can then be used as the input of HighFold2. Since the refolding of disulfide bonds requires specifying the numbers of the amino acids that form the disulfide bonds, you can use the --sort parameter to save sequences of different lengths in separate subfolders, which makes it more convenient to perform batch refolding.
 
+We have attempted to use AF3 and Boltz for the refolding of cyclic isopeptides, but found it difficult to achieve. Here, we provide scripts for generating input files for AF3 and Boltz, which can produce input folders from PDB folders based on template files. You can modify the atom names in the templates to realize the prediction of different types of cyclic peptides.
 
+`python generate_AF3_input.py -i <pdb_dir> -o <json_dir> -t AF3_template.json`
+
+`python generate_Boltz_input.py -i <pdb_dir> -o <yaml_dir> -t Boltz_template.json`
+
+For scRMSD calculation, we provide a script for automatical comparasion and calculation.
