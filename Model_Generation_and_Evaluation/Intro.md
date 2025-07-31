@@ -1,7 +1,3 @@
-⏰ This repository is still under building. We are trying our best to set up everything, and will finish this in 24 hours (by August 1st 20:00, China standard time)
-
----
-
 😊 hi
 
 This is an introduction for replicating the results of model retraining and evaluation in the manuscript of:
