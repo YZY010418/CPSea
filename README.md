@@ -25,6 +25,12 @@ In which are CPSea datasets derived from AFDB and PDB.
 
 ### Structure Validity
 
-For Ramachadran analysis on cyclic peptides, run:
+**For Ramachadran analysis** on main-chain torsion angles, run: 
+
+`python Dataset_Evaluation/rama_analysis.py -i <PDB_path_list> -o <Rama_output> -c <cores>`
+
+The input should be a list file containing paths to PDB in each line. This script will generate a CSV file that contains the proportion of each structure's Ramachandran angles falling into the Allowed and Favoured regions.
+
+**For PLIP analysis** on interface interaction distribution, run:
 
 ``
