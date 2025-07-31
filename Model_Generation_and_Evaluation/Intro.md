@@ -269,6 +269,6 @@ Then, analyze the qTm by
 python check_qtm_max_average.py out --ignore_R --ignore_same_id
 ```
 
-For self-consistency, we use HighFold2 to refold head-tail and disulfide cyclic peptides, and calculate the Ca RMSD.
+For self-consistency, we use [**HighFold2**](https://github.com/hongliangduan/HighFold2) to refold head-tail and disulfide cyclic peptides, and calculate the Ca RMSD.
 
 
