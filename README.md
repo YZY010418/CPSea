@@ -65,6 +65,8 @@ This will generate a CSV file that clearly records the Rosetta ddG for each stru
 
 **For Vina score**
 
+**Note that** the vina command line in `vina_analysis.py` needs to be changed to fit your installation.
+
 ```
 python Dataset_Evaluation/vina_analysis.py -i <PDB_path_list> -o <Vina_out> -c <cores>
 ```
