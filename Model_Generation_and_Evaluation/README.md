@@ -13,6 +13,7 @@ We re-trained three target-conditioned peptide design models in our work, namely
 
 1. move `ModifyModels/run_inference_new.py` into the {DiffPepBuilder}/experiments directory
 2. move `ModifyModels/batch_generate.py` into the {PepGlad} directory
+3. move `ModifyModels/run.py` into the {PepGlad}/api directory
 
 Now that we are ready for the following steps.
 
