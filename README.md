@@ -125,8 +125,8 @@ foldseek easy-multimersearch  <dataset_dir> <path_to_pdb> <output_dir>/out --ali
 Below we provide two codes for calculating the number of clusters and novelty.
 
 ```
-python check_unique.py -i <cluster_tsv> -o <unique_list> 
-python check_qtm_max_average.py <out_file> (--ignore_R)
+python Dataset_Evaluation/check_unique.py -i <cluster_tsv> -o <unique_list> 
+python Dataset_Evaluation/check_qtm_max_average.py <out_file> (--ignore_R)
 ```
 
 `check_unique.py` generates a list file containing one file from each cluster, so that the number of lines equals to the number of clusters, and the list file can be used as the index of a non-redundant subset.
