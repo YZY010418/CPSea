@@ -4,6 +4,19 @@
 
 💡 In this repository, we provide scripts and introductions for dataset generation and evaluation, and also how to use re-trained models to generate cyclic peptides and to evaluate the model outputs.
 
+[**Download Current Datasets**](#download-current-datasets)
+
+[**Dataset Generation**](#dataset-generation)
+
+[**Dataset Evaluation**](#dataset-evaluation)
+
+* [Structure Validity](#structure-validity)
+* [Binding Affinity](#binding-affinity)
+* [Wet-lab Compatibility](#wet-lab-compatibility)
+* [Designability, Diversity and Novelty](#designability,-diversity-and-novelty)
+
+[**Model Generation and Evaluation**](#model-generation-and-evaluation)
+
 ---
 
 ## Download Current Datasets
