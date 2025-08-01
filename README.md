@@ -23,7 +23,7 @@ We also provide environment files for dataset evaluation in [Dataset_Evaluation/
 * `plip_vina.yml` is for PLIP and Vina evaluations
 * `evaluation.yml` is for the rest evaluations
 
-🚧 Please note that these environments have not been tested in another computer yet, nor the following data evaluation protocols. We will try to test these soon. If there are any questions, please let us know.
+🚧 Please note that these environments have not been tested in another computer yet, nor the following data evaluation protocols. We will try to test these soon. If there are any questions, please feel free to [contact](#contact) us. Thank you!
 
 ---
 
