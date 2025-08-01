@@ -64,6 +64,8 @@ This will generate a CSV file, whose name is the PLIP output file name with an a
 
 **For Rosetta ddG**
 
+**Note that** the [**RosettaScript**](https://rosettacommons.org) path in `rosetta_analysis.py` need to be changed.
+
 ```
 python Dataset_Evaluation/rosetta_analysis.py -i <PDB_path_list> -o <Rosetta_sc> -c <cores>
 ```
