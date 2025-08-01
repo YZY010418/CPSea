@@ -7,6 +7,16 @@ Due to time limit, the protocol described in this introduction has not been full
 
 Since the primary focus of CPSea is to construct a cyclic peptid -protein complex dataset to mitigate data scarcity, and developing dedicated cyclic peptide design models is not the core objective of this work, we have not modified existing models to enable direct cyclic peptide generation. We apologize for any inconvenience this may cause. A straightforward yet powerful cyclic peptide design model is currently under development and will be released in the near future.
 
+[**Step 0: Model setup**](#step-0-model-setup)
+
+[**Step 1: Data preparation**](#step-1-data-preparation)
+
+[**Step 2: Inference**](#step-2-inference)
+
+[**Step 3: Post-processing**](#step-3-post-processing)
+
+[**Step 4: Evaluation**](#step-4-evaluation)
+
 ## Step 0: Model setup
 
 We re-trained three target-conditioned peptide design models in our work, namely [DiffPepBuilder](https://github.com/YuzheWangPKU/DiffPepBuilder), [PepFlow](https://github.com/Maikuraky/PepFlow), and [PepGLAD](https://github.com/THUNLP-MT/PepGLAD). First, please install the three models following their guidance. Then, change these files:
