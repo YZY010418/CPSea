@@ -26,7 +26,7 @@ On top of this, we need to define epitope for each target, which can be achieved
 1. For DiffPepBuilder, run
 
 ```
-python generate_epitopes.py -i <complex_dir> -o epitopes.json
+python TestSet/Scripts/generate_epitopes.py -i <complex_dir> -o epitopes.json
 ```
 
 This generates a json file containing epitope information for each receptor in the format required by DiffPepBuilder
@@ -34,7 +34,7 @@ This generates a json file containing epitope information for each receptor in t
 2. For PepFlow, because the model could not extract epitopes, we need to make epitope structures mannually, which can be done by:
 
 ```
-python Flow_pocket_dealer.py <old_complex_dir> <new_complex_dir>
+python TestSet/Scripts/Flow_pocket_dealer.py <old_complex_dir> <new_complex_dir>
 ```
 
 This will generate a new folder in which the pocket.pdb contains only the epitope.
@@ -42,7 +42,7 @@ This will generate a new folder in which the pocket.pdb contains only the epitop
 3. For PepGlad, what we need to do is simply change the format of the `epitopes.json` file generated above. 
 
 ```
-python transform_json.py -i <epitopes.json> -o <epitopes_glad.json>
+python TestSet/Scripts/transform_json.py -i <epitopes.json> -o <epitopes_glad.json>
 ```
 
 ## Step 2: Inference
@@ -83,21 +83,21 @@ First, process the receptor data. A list file consists of subfolder names in {ne
 Then, run:
 
 ```
-python models_con/pep_dataloader.py
+python {path_to_pepflow}/models_con/pep_dataloader.py
 ```
 
 Now, we can do inference. First, modify `configs/learn_angle.yaml`, change the structure_dir, dataset_dir and name of the 
 generate dataset. Second, make an output diectory (since the script does not create the directory itself). Then run:
 
 ```
-python models_con/inference.py --config configs/learn_angle.yaml  --device cuda:0 --ckpt path/to/retrained/ckpt --output output/path \
+python {path_to_pepflow}/models_con/inference.py --config configs/learn_angle.yaml  --device cuda:0 --ckpt path/to/retrained/ckpt --output output/path \
 --num_samples 100
 ```
 
 Finally, we can do sampling.
 
 ```
-python models_con/sample.py --SAMPLEDIR output/path/of/inference
+python {path_to_pepflow}/models_con/sample.py --SAMPLEDIR output/path/of/inference
 ```
 
 ### 2.3 PepGlad
@@ -105,7 +105,7 @@ python models_con/sample.py --SAMPLEDIR output/path/of/inference
 It is very simple to run PepGlad. Similar to DiffPepBuilder, we still need a csv file containing "pdb_names" and "length" columns.
 
 ```
-python batch_generate.py --length_csv <length_csv> --input_dir <receptor_PDB_dir> --pocket_dir <transformed_json> --output_dir <out_dir>
+python {path_to_pepglad}/batch_generate.py --length_csv <length_csv> --input_dir <receptor_PDB_dir> --pocket_dir <transformed_json> --output_dir <out_dir>
 ```
 
 ## Step 3: Post-processing
@@ -120,9 +120,9 @@ the file name as {targetID}_{num}.pdb. We suggest to collect all generated pdb f
 then run:
 
 ```
-python rename_glad.py -i glad_generated
-python rename_flow.py -i flow_generated
-python rename_diff.py -i diff_generated
+python PostProcess/rename_glad.py -i glad_generated
+python PostProcess/rename_flow.py -i flow_generated
+python PostProcess/rename_diff.py -i diff_generated
 ```
 
 These would generate the renamed folders. 
@@ -133,39 +133,39 @@ Then, we apply a similar cyclization and relax protocol as that in the CPSea pip
 generated complexes, because PepGlad will fulfill the receptor automatically.
 
 ```
-python glad_cut_pocket.py --renamed glad_renamed --receptor {receptors} --json CPSet_epitope_for_glad
+python PostProcess/glad_cut_pocket.py --renamed glad_renamed --receptor {receptors} --json CPSet_epitope_for_glad
 ```
 
 Then, we check the CB and length of each generated peptide, to exclude peptides whose CB distance is not within [3,8] range:
 
 ```
-python cb_distance_calculater.py glad_cutpocket glad_initial_CB.csv
-python filter_CB.py glad_initial_CB.csv glad_cutpocket cyc_failed
+python PostProcess/cb_distance_calculater.py glad_cutpocket glad_initial_CB.csv
+python PostProcess/filter_CB.py glad_initial_CB.csv glad_cutpocket cyc_failed
 
-python cb_distance_calculater.py flow_renamed flow_initial_CB.csv
-python filter_CB.py flow_initial_CB.csv flow_renamed cyc_failed
+python PostProcess/cb_distance_calculater.py flow_renamed flow_initial_CB.csv
+python PostProcess/filter_CB.py flow_initial_CB.csv flow_renamed cyc_failed
 
-python cb_distance_calculater.py diff_renamed diff_initial_CB.csv
-python filter_CB.py diff_initial_CB.csv diff_renamed cyc_failed
+python PostProcess/cb_distance_calculater.py diff_renamed diff_initial_CB.csv
+python PostProcess/filter_CB.py diff_initial_CB.csv diff_renamed cyc_failed
 ```
 
 Now, before cyclization and relax, it seems better to replace pockets by the same residues in oringinal receptors.
 
 ```
-python combine_epitope.py --generated diff_renamed --receptors CPSet/clean_receptors --epitopes CPSet/CPSet_epitopes.json \
+python PostProcess/combine_epitope.py --generated diff_renamed --receptors CPSet/clean_receptors --epitopes CPSet/CPSet_epitopes.json \
 --output diff_reconstructed
-python combine_epitope.py --generated flow_renamed --receptors flow_gt --epitopes CPSet/CPSet_epitopes.json \
+python PostProcess/combine_epitope.py --generated flow_renamed --receptors flow_gt --epitopes CPSet/CPSet_epitopes.json \
 --output flow_reconstructed
-python combine_epitope.py --generated glad_cutpocket --receptors CPSet/clean_receptors --epitopes CPSet/CPSet_epitopes.json \
+python PostProcess/combine_epitope.py --generated glad_cutpocket --receptors CPSet/clean_receptors --epitopes CPSet/CPSet_epitopes.json \
 --output glad_reconstructed
 ```
 
 Now we can calculate the success rate for cyclization. Then, we calculate both CB distance and length, as inputs for cyclization and relax. Please use absolute path here, because the relax script relies on this information to find the file.
 
 ```
-python cb_distance_and_length.py {abs_path}/CPSet_Diff/diff_reconstructed CPSet_Diff/CPSet_Diff_CB_length.csv
-python cb_distance_and_length.py {abs_path}/CPSet_Flow/flow_reconstructed CPSet_Flow/CPSet_Flow_CB_length.csv
-python cb_distance_and_length.py {abs_path}/CPSet_Glad/glad_reconstructed CPSet_Glad/CPSet_Glad_CB_length.csv
+python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Diff/diff_reconstructed CPSet_Diff/CPSet_Diff_CB_length.csv
+python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Flow/flow_reconstructed CPSet_Flow/CPSet_Flow_CB_length.csv
+python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Glad/glad_reconstructed CPSet_Glad/CPSet_Glad_CB_length.csv
 ```
 
 Then run `relax_mp_model.py`, change the file paths and configs in the script.
