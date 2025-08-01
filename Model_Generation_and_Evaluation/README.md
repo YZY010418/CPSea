@@ -5,7 +5,7 @@ CPSea: Large-scale cyclic peptide-protein complex dataset for machine learning i
 
 Due to time limit, the protocol described in this introduction has not been fully tested yet, please contact us if there are any problems.
 
-Because the main concern of CPSea is to create a cyclic peptide protein complex dataset to address the data scarcity, and developing corresponding cyclic peptide design models is not the core to this work, we didn't modify models to make them directly generate cyclic peptides. We are sorry for the current inconvenient. A straightforward and powerful cyclic peptide design model will be developed soon.
+Since the primary focus of CPSea is to construct a cyclic peptid -protein complex dataset to mitigate data scarcity, and developing dedicated cyclic peptide design models is not the core objective of this work, we have not modified existing models to enable direct cyclic peptide generation. We apologize for any inconvenience this may cause. A straightforward yet powerful cyclic peptide design model is currently under development and will be released in the near future.
 
 ## Step 0: Model setup
 
