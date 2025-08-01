@@ -17,15 +17,15 @@
 
 [**Model Generation and Evaluation**](#model-generation-and-evaluation)
 
----
-
-We provide environment files for dataset evaluation in [Dataset_Evaluation/Environment](Dataset_Evaluation/Environment).
+We also provide environment files for dataset evaluation in [Dataset_Evaluation/Environment](Dataset_Evaluation/Environment).
 
 * `highfold2.yml` is for designability evaluations
 * `plip_vina.yml` is for PLIP and Vina evaluations
 * `evaluation.yml` is for the rest evaluations
 
-Please note that these environments have not been tested in another computer yet. We will test these soon.
+🚧 Please note that these environments have not been tested in another computer yet, nor the following data evaluation protocols. We will try to test these soon. If there are any questions, please let us know.
+
+---
 
 ## Download Current Datasets
 
