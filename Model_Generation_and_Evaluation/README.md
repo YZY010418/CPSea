@@ -168,18 +168,24 @@ python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Flow/flow_reconstr
 python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Glad/glad_reconstructed CPSet_Glad/CPSet_Glad_CB_length.csv
 ```
 
-Then run `relax_mp_model.py`, change the file paths and configs in the script.
+Then run `relax_mp_model.py`, change the file paths and configs in the script as follows:
+
+1. in line 86, set the cores to use (required)
+2. in line 87, set the path to save relaxed structures and relevant files (required)
+3. in line 88, set the path of <CB_length.csv> to read in (required)
+4. in line 89, set the name of the output metadata file (optional)
+5. in line 90, set the number of tasks for tqdm bar (optional)
 
 ```
-python relax_mp_model.py
+python PostProcess/Relax/relax_mp_model.py
 ```
 
 After running this, we re-combine the cyclic peptides and their full-length receptors by running:
 
 ```
-python combine_receptor.py --relaxed diff_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output diff_full
-python combine_receptor.py --relaxed flow_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output flow_full
-python combine_receptor.py --relaxed glad_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output glad_full
+python PostProcess/combine_receptor.py --relaxed diff_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output diff_full
+python PostProcess/combine_receptor.py --relaxed flow_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output flow_full
+python PostProcess/combine_receptor.py --relaxed glad_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output glad_full
 ```
 
 😉 Now that we finished the target-conditioned cyclic peptide generation!
@@ -194,14 +200,14 @@ First, we use rosetta ddG to check if the binding interfaces are designed reason
 
 ```
 find {diff_full} -name "*.pdb" > diff_full.list
-python rosetta_analysis.py -i diff_full.list -o rosetta_diff_full.sc -p 64
-python ddG_extractor.py -i rosetta_diff_full.sc -o rosetta_ddG_diff_full.csv
+python Evaluation/rosetta_analysis.py -i diff_full.list -o rosetta_diff_full.sc -p 64
+python Evaluation/ddG_extractor.py -i rosetta_diff_full.sc -o rosetta_ddG_diff_full.csv
 ```
 
 Now, we can calculate the energy success rate by checking Rosetta ddG. To exclude energy failed designs, run:
 
 ```
-python filter_ddG.py rosetta_ddG_diff_full.csv {diff_full} energy_failed
+python Evaluation/filter_ddG.py rosetta_ddG_diff_full.csv {diff_full} energy_failed
 ```
 
 <diff_full> now contains the final structures of generated cyclic peptides.
@@ -212,16 +218,16 @@ First, calculate Rosetta ddG and Vina score. **Note that** the [Vina](https://vi
 
 ```
 find {diff_full} -name "*.pdb" > Diff_Final.list
-python rosetta_analysis.py -i Diff_Final.list -o Rosetta_Diff_Final.sc -c <cores>
-python ddG_extractor.py -i Rosetta_Diff_Final.sc -o Rosetta_ddG_Diff_Final.csv
-python vina_analysis.py -i Diff_Final.list -o Vina_Diff.csv -c <cores>
+python Evaluation/rosetta_analysis.py -i Diff_Final.list -o Rosetta_Diff_Final.sc -c <cores>
+python Evaluation/ddG_extractor.py -i Rosetta_Diff_Final.sc -o Rosetta_ddG_Diff_Final.csv
+python Evaluation/vina_analysis.py -i Diff_Final.list -o Vina_Diff.csv -c <cores>
 ```
 
 Then, select the best for each target
 
 ```
-python select_best.py -i Rosetta_ddG_Diff_Final.csv -o bestddG_Diff.csv
-python select_best.py -i Vina_Diff.csv -o bestVina_Diff.csv
+python Evaluation/select_best.py -i Rosetta_ddG_Diff_Final.csv -o bestddG_Diff.csv
+python Evaluation/select_best.py -i Vina_Diff.csv -o bestVina_Diff.csv
 ```
 
 ### 4.3 Structure Validity
@@ -229,8 +235,8 @@ python select_best.py -i Vina_Diff.csv -o bestVina_Diff.csv
 We use [**PLIP**](https://plip-tool.biotec.tu-dresden.de/plip-web/plip/index) to analyze interface interactions and summarize the proportions of each types of interaction.
 
 ```
-python plip_analysis.py -i Diff_Final.list -o PLIP_Diff.csv -c <cores>
-python plip_handeler.py PLIP_Diff.csv
+python Evaluation/plip_analysis.py -i Diff_Final.list -o PLIP_Diff.csv -c <cores>
+python Evaluation/plip_handeler.py PLIP_Diff.csv
 ```
 
 The statistic review should be print in stdout.
@@ -238,7 +244,7 @@ The statistic review should be print in stdout.
 We use Ramachadran plot to evaluate the validity of cyclic peptides themselves.
 
 ```
-python rama_analysis.py -i Diff_Final.list -o Rama_Diff.csv -c <cores>
+python Evaluation/rama_analysis.py -i Diff_Final.list -o Rama_Diff.csv -c <cores>
 ```
 
 ### 4.4 Wet-lab Compatibility
@@ -246,8 +252,8 @@ python rama_analysis.py -i Diff_Final.list -o Rama_Diff.csv -c <cores>
 We calculate GRAVY, logP, and rTPSA to assess the synthesis feasiblity and aggregation propensity of cyclic peptides.
 
 ```
-python water_or_oil.py -i Diff_Final.list -o WoO_Diff.csv --chain_id L -c <cores>
-python GRAVY_calculator.py -i Diff_Final.list -o GRAVY_Diff.csv --chain_id L -c 4
+python Evaluation/water_or_oil.py -i Diff_Final.list -o WoO_Diff.csv --chain_id L -c <cores>
+python Evaluation/GRAVY_calculator.py -i Diff_Final.list -o GRAVY_Diff.csv --chain_id L -c 4
 ```
 
 ### 4.5 Diversity, Novelty and Self-Consistency
@@ -255,7 +261,7 @@ python GRAVY_calculator.py -i Diff_Final.list -o GRAVY_Diff.csv --chain_id L -c 
 For diversity, we cluster the generated structures by cyclic-aware rmsd and Foldseek
 
 ```
-python mp_rmsd_cyclic.py --rmsd Diff_rmsd.npy --hist Diff_rmsd.png --cluster Diff_rmsd.csv --name_list Diff_Final.list --num_cores 48
+python Evaluation/mp_rmsd_cyclic.py --rmsd Diff_rmsd.npy --hist Diff_rmsd.png --cluster Diff_rmsd.csv --name_list Diff_Final.list --num_cores 48
 
 foldseek easy-multimercluster {diff_full}  Diff_foldseek_cluster/clu  Diff_foldseek_cluster --multimer-tm-threshold 0.65 \
 --chain-tm-threshold 0.5 --interface-lddt-threshold 0.65 --alignment-type 2 --cov-mode 0 --min-seq-id 0 --threads 32
@@ -273,7 +279,7 @@ foldseek easy-multimersearch {diff_full} {path/to/PDB/database} Diff_Final_folds
 Then, analyze the qTm by
 
 ```
-python check_qtm_max_average.py out --ignore_R --ignore_same_id
+python Evaluation/check_qtm_max_average.py out --ignore_R --ignore_same_id
 ```
 
 For self-consistency, we use [**HighFold2**](https://github.com/hongliangduan/HighFold2) to refold head-tail and disulfide cyclic peptides, and calculate the Ca scRMSD. The input file of HF2 can be batch generated by `generate_HF2_input.py`, and The scRMSD calculation can be finished by `calculate_scRMSD.py`.
