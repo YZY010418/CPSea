@@ -25,6 +25,18 @@ We re-trained three target-conditioned peptide design models in our work, namely
 2. move `ModifyModels/batch_generate.py` into the {PepGlad} directory
 3. move `ModifyModels/run.py` into the {PepGlad}/api directory
 
+We provide environment files for model generation and evaluation in [Environment](./Environment)
+
+* `diffpepbuilder.yml` is for DiffPepBuilder generation
+* `flow.yml` is for PepFlow generation
+* `PepGLAD.yml` is for PepGLAD generation
+* `relax.yml` is for cyclization and relax step employing openmm
+* `highfold2.yml` is for designability evaluation
+* `plip_vina.yml` is for PLIP and Vina analyses
+* `evaluation.yml` is for the rest evaluations
+
+Please note that these environments have not been tested on another computer, which we will try soon.
+
 Now that we are ready for the following steps.
 
 ## Step 1: Data preparation
