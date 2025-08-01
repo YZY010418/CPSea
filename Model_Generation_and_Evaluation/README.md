@@ -229,7 +229,7 @@ python Evaluation/filter_ddG.py rosetta_ddG_diff_full.csv {diff_full} energy_fai
 
 ### 4.2 Affinity
 
-First, calculate Rosetta ddG and Vina score. **Note that** the [Vina](https://vina.scripps.edu) command line in `vina_analysis.py` needs to be changed to fit your installation.
+First, calculate Rosetta ddG and Vina score. **Note that** the [Vina](https://vina.scripps.edu) command line in `vina_analysis.py` and the [**RosettaScript**](https://rosettacommons.org) path in `rosetta_analysis.py` need to be changed.
 
 ```
 find {diff_full} -name "*.pdb" > Diff_Final.list
