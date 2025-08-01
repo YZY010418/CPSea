@@ -19,7 +19,13 @@
 
 ---
 
-We provide environment files in 
+We provide environment files for dataset evaluation in [Dataset_Evaluation/Environment](Dataset_Evaluation/Environment).
+
+* `highfold2.yml` is for designability evaluations
+* `plip_vina.yml` is for PLIP and Vina evaluations
+* `evaluation.yml` is for the rest evaluations
+
+Please note that these environments have not been tested in another computer yet. We will test these soon.
 
 ## Download Current Datasets
 
