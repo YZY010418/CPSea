@@ -13,7 +13,7 @@
 * [Structure Validity](#structure-validity)
 * [Binding Affinity](#binding-affinity)
 * [Wet-lab Compatibility](#wet-lab-compatibility)
-* [Designability, Diversity and Novelty](#designability,-diversity-and-novelty)
+* [Designability, Diversity and Novelty](#designability-diversity-and-novelty)
 
 [**Model Generation and Evaluation**](#model-generation-and-evaluation)
 
