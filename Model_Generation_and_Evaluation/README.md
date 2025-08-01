@@ -313,7 +313,7 @@ For self-consistency, we use [**HighFold2**](https://github.com/hongliangduan/Hi
 
 `python Evaluation/calculate_scRMSD.py <folder1> <folder2> -o <scRMSD_csv>`
 
-where <folder1> and <folder2> are generated structures and refolded structures.
+where folder1 and folder2 are generated structures and refolded structures.
 
 
 
