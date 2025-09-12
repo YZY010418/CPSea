@@ -169,7 +169,7 @@ def process_pdb_list(pdb_list_file, output_file='PLIP_metadata_CPSet.csv', n_job
                 log_file=log
             )
             
-            with Pool(processes=n_jobs) as pool:
+            with Pool(processes=cores) as pool:
                 results = []
                 for pdb_file in pdb_files:
                     if os.path.exists(pdb_file):
