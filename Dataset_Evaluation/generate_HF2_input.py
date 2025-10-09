@@ -115,8 +115,8 @@ def process_pdb_folder(folder_path, output_dir, sort=False):
 
 def main():
     parser = argparse.ArgumentParser(description='Convert CSV file or folder with PDB files to a3m format')
-    parser.add_argument('-i','input', help='Path to input CSV file or folder containing PDB files')
-    parser.add_argument('-o','output_dir', help='Directory for output a3m files')
+    parser.add_argument('-i','--input', help='Path to input CSV file or folder containing PDB files')
+    parser.add_argument('-o','--output_dir', help='Directory for output a3m files')
     parser.add_argument('--sort', action='store_true', help='Save in subfolders by sequence length (folder name format: length_sequence length)')
     
     args = parser.parse_args()
