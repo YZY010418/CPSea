@@ -69,8 +69,9 @@ This will generate a new folder in which the pocket.pdb contains only the epitop
 3. For PepGlad, what we need to do is simply change the format of the `epitopes.json` file generated above. 
 
 ```
-python TestSet/Scripts/transform_json.py -i <epitopes.json> -o <epitopes_glad.json>
+python TestSet/Scripts/transform_json.py -i <epitopes.json> -o <epitopes_glad_json_dir>
 ```
+The json files for each target will be generated and saved in the output dir
 
 ## Step 2: Inference
 
