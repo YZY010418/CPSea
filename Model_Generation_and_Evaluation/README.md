@@ -75,7 +75,7 @@ The json files for each target will be generated and saved in the output dir
 
 ## Step 2: Inference
 
-During inference, don't forget to change checkpoints into the re-trained versions, as provided in [Kaggle](https://www.kaggle.com/datasets/ziyiyang180104/cpsea).
+During inference, don't forget to change checkpoints into the re-trained versions in config files, as provided in [Kaggle](https://www.kaggle.com/datasets/ziyiyang180104/cpsea).
 
 ### 2.1 DiffPepBuilder
 
@@ -87,15 +87,19 @@ python {path_to_diffpepbuilder}/experiments/process_receptor.py --pdb_dir {path_
 
 This will generate .pkl files for each target.
 
-Next, we can do inference to generate *pseudo* cyclic peptides (Because we have not modified the model to generate cyclic peptides directly, the outputs of these re-trained models are actually linear peptides with their terminals close to each other)
+Next, we can do inference to generate *pseudo* cyclic peptides (Because we have not modified the model to generate cyclic peptides directly, the outputs of these re-trained models are actually linear peptides with their terminals close to each other. We are currently training a model with extrended vocabulary that generates cyclic structures directly.)
 
 In our manuscript, we let models generate peptides with the same length as in initial complexes. To do this more easily, we modified the run_inference.py by adding a csv file input, named `run_inference_new.py`.
 
-The csv file should have two columns, the first column with the title "pdb_names", and the second column with the title "length".
+The csv file should have two columns, the first column with the title "pdb_name", and the second column with the title "length".
+
+Please modify line 282 to the real csv_path.
+
+Then run:
 
 ```
 export BASE_PATH={path_to_diffpepbuilder}
-torchrun --nproc-per-node=1 experiments/run_inference_new.py data.val_csv_path=data/receptor_data/metadata_test.csv --csv_path <the_length_csv>
+torchrun --nproc-per-node=1 experiments/run_inference_new.py data.val_csv_path=data/receptor_data/metadata_test.csv
 ```
 
 ### 2.2 PepFlow
