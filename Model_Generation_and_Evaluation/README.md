@@ -186,11 +186,11 @@ python PostProcess/filter_CB.py diff_initial_CB.csv diff_renamed diff_cyc_failed
 Now, before cyclization and relax, it seems better to replace pockets by the same residues in oringinal receptors.
 
 ```
-python PostProcess/combine_epitope.py --generated diff_renamed --receptors CPSet/clean_receptors --epitopes CPSet/CPSet_epitopes.json \
+python PostProcess/combine_epitope.py --generated diff_renamed --receptors <receptors> --epitopes <epitopes.json> \
 --output diff_reconstructed
-python PostProcess/combine_epitope.py --generated flow_renamed --receptors flow_gt --epitopes CPSet/CPSet_epitopes.json \
+python PostProcess/combine_epitope.py --generated flow_renamed --receptors flow_gt --epitopes <epitopes.json> \
 --output flow_reconstructed
-python PostProcess/combine_epitope.py --generated glad_cutpocket --receptors CPSet/clean_receptors --epitopes CPSet/CPSet_epitopes.json \
+python PostProcess/combine_epitope.py --generated glad_cutpocket --receptors <receptors> --epitopes <epitopes.json> \
 --output glad_reconstructed
 ```
 
