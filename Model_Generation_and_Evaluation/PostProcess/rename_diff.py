@@ -53,7 +53,8 @@ def main():
         try:
             # Get subfolder name
             relative_path = pdb_file.relative_to(input_dir)
-            subfolder_name = relative_path.parent.name if relative_path.parent.name else "root"
+            midfolder_name = relative_path.parent.name if relative_path.parent.name else "root"
+            subfolder_name = midfolder_name.parent.name if midfolder_name.parent.name else "root"
             
             # Extract the number after the last underscore in the original filename
             original_filename = pdb_file.stem
