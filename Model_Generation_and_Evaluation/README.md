@@ -136,7 +136,7 @@ python {path_to_pepflow}/models_con/sample.py --SAMPLEDIR output/path/of/inferen
 
 ### 2.3 PepGlad
 
-It is very simple to run PepGlad. Similar to DiffPepBuilder, we still need a csv file containing "pdb_names" and "length" columns.
+It is very simple to run PepGlad. Similar to DiffPepBuilder, we still need a csv file containing "pdb_names" and "length" columns. The re-trained weight can be renamed to `codesign.ckpt` under `{path_to_pepglad}/checkpoints`, the scripts will automatically load this file.
 
 ```
 python {path_to_pepglad}/batch_generate.py --length_csv <length_csv> --input_dir <receptor_PDB_dir> --pocket_dir <transformed_json> --output_dir <out_dir>
