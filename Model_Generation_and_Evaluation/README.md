@@ -154,9 +154,9 @@ the file name as {targetID}_{num}.pdb. We suggest to collect all generated pdb f
 then run:
 
 ```
-python PostProcess/rename_glad.py -i glad_generated
-python PostProcess/rename_flow.py -i flow_generated
-python PostProcess/rename_diff.py -i diff_generated
+python PostProcess/rename_glad.py -i glad_generated -o glad_renamed
+python PostProcess/rename_flow.py -i flow_generated -o flow_renamed
+python PostProcess/rename_diff.py -i diff_generated -o diff_renamed
 ```
 
 These would generate the renamed folders. 
