@@ -167,7 +167,7 @@ Then, we apply a similar cyclization and relax protocol as that in the CPSea pip
 generated complexes, because PepGlad will fulfill the receptor automatically.
 
 ```
-python PostProcess/glad_cut_pocket.py --renamed glad_renamed --receptor {receptors} --json CPSet_epitope_for_glad
+python PostProcess/glad_cut_pocket.py --renamed glad_renamed --receptor {receptors} --json {epitope_for_glad}
 ```
 
 Then, we check the CB and length of each generated peptide, to exclude peptides whose CB distance is not within [3,8] range:
