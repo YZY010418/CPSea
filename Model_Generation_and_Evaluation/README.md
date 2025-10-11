@@ -95,6 +95,8 @@ The csv file should have two columns, the first column with the title "pdb_name"
 
 Please modify line 282 to the real csv_path.
 
+Then, we can modify `{path_to_diffpepbuilder}/configs/inference.yaml` to use the retrained weights for generation.
+
 Then run:
 
 ```
