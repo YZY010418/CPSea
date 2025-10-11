@@ -174,13 +174,13 @@ Then, we check the CB and length of each generated peptide, to exclude peptides 
 
 ```
 python PostProcess/cb_distance_calculater.py glad_cutpocket glad_initial_CB.csv
-python PostProcess/filter_CB.py glad_initial_CB.csv glad_cutpocket cyc_failed
+python PostProcess/filter_CB.py glad_initial_CB.csv glad_cutpocket glad_cyc_failed
 
 python PostProcess/cb_distance_calculater.py flow_renamed flow_initial_CB.csv
-python PostProcess/filter_CB.py flow_initial_CB.csv flow_renamed cyc_failed
+python PostProcess/filter_CB.py flow_initial_CB.csv flow_renamed flow_cyc_failed
 
 python PostProcess/cb_distance_calculater.py diff_renamed diff_initial_CB.csv
-python PostProcess/filter_CB.py diff_initial_CB.csv diff_renamed cyc_failed
+python PostProcess/filter_CB.py diff_initial_CB.csv diff_renamed diff_cyc_failed
 ```
 
 Now, before cyclization and relax, it seems better to replace pockets by the same residues in oringinal receptors.
