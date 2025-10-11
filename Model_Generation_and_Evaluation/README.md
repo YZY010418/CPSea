@@ -150,8 +150,8 @@ is needed to transform the generated "pseudo" cyclic peptides into real ones.
 ### 3.1 Rename
 
 To make the rest process smooth, we first rename the outputs from three models, to name the receptor as R and binder as L, and also unify
-the file name as {targetID}_{num}.pdb. We suggest to collect all generated pdb files in "XXX_generated" folder first (remain subfolders),
-then run:
+the file name as {targetID}_{num}.pdb. We suggest to rename the generation output directory into "XXX_generated" folder. For PepFlow, the `pdbs` director generated after sampling process should be renamed.
+Then run:
 
 ```
 python PostProcess/rename_glad.py -i glad_generated -o glad_renamed
