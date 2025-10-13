@@ -22,7 +22,7 @@ class ForceFieldMinimizerCys(ForceFieldMinimizer):
 
         assert cyclic_opts is not None, f'cyclic_opts should not be None, but list of pairs ((chain_id, res_pos), (chain_id, res_pos))'
 
-        main_chain_atoms = ['N', 'CA', 'C', 'O', 'OXT']
+        main_chain_atoms = ['N', 'CA', 'C', 'O']
         
         all_cyc_cys = {}
         for resid1, resid2 in cyclic_opts:
@@ -38,7 +38,7 @@ class ForceFieldMinimizerCys(ForceFieldMinimizer):
                 if (chain.id, i) not in all_cyc_cys:
                     continue
                 for atom in res.atoms():
-                    if atom.name not in main_chain_atoms:
+                    if atom.name not in main_chain_atoms and atom.name not in ['CB']:
                         atoms_to_remove.append(atom)
                 res.name = 'CYS'
             modeller.delete(atoms_to_remove)
