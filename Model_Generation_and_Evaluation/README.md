@@ -197,9 +197,9 @@ python PostProcess/combine_epitope.py --generated glad_cutpocket --receptors <re
 Now we can calculate the success rate for cyclization. Then, we calculate both CB distance and length, as inputs for cyclization and relax. Please use absolute path here, because the relax script relies on this information to find the file.
 
 ```
-python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Diff/diff_reconstructed CPSet_Diff/CPSet_Diff_CB_length.csv
-python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Flow/flow_reconstructed CPSet_Flow/CPSet_Flow_CB_length.csv
-python PostProcess/cb_distance_and_length.py {abs_path}/CPSet_Glad/glad_reconstructed CPSet_Glad/CPSet_Glad_CB_length.csv
+python PostProcess/cb_distance_and_length.py {abs_path}/diff_reconstructed Diff_CB_length.csv
+python PostProcess/cb_distance_and_length.py {abs_path}/flow_reconstructed Flow_CB_length.csv
+python PostProcess/cb_distance_and_length.py {abs_path}/glad_reconstructed Glad_CB_length.csv
 ```
 
 Then run `relax_mp_model.py`, change the file paths and configs in the script as follows:
