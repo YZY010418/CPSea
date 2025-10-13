@@ -186,11 +186,11 @@ python PostProcess/filter_CB.py diff_initial_CB.csv diff_renamed diff_cyc_failed
 Now, before cyclization and relax, it seems better to replace pockets by the same residues in oringinal receptors.
 
 ```
-python PostProcess/combine_epitope.py --generated diff_renamed --receptors <receptors> --epitopes <epitopes.json> \
+python PostProcess/combine_epitope.py --generated diff_renamed --receptors {receptors} --epitopes {epitopes.json} \
 --output diff_reconstructed
-python PostProcess/combine_epitope.py --generated flow_renamed --receptors flow_gt --epitopes <epitopes.json> \
+python PostProcess/combine_epitope.py --generated flow_renamed --receptors flow_gt --epitopes {epitopes.json} \
 --output flow_reconstructed
-python PostProcess/combine_epitope.py --generated glad_cutpocket --receptors <receptors> --epitopes <epitopes.json> \
+python PostProcess/combine_epitope.py --generated glad_cutpocket --receptors {receptors} --epitopes {epitopes.json} \
 --output glad_reconstructed
 ```
 
@@ -217,9 +217,9 @@ python PostProcess/Relax/relax_mp_model.py
 After running this, we re-combine the cyclic peptides and their full-length receptors by running:
 
 ```
-python PostProcess/combine_receptor.py --relaxed diff_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output diff_full
-python PostProcess/combine_receptor.py --relaxed flow_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output flow_full
-python PostProcess/combine_receptor.py --relaxed glad_relaxed/ --receptors ../../evaluate_dataset/CPSet/clean_receptors  --output glad_full
+python PostProcess/combine_receptor.py --relaxed diff_relaxed/ --receptors {receptors}  --output diff_full
+python PostProcess/combine_receptor.py --relaxed flow_relaxed/ --receptors {receptors}  --output flow_full
+python PostProcess/combine_receptor.py --relaxed glad_relaxed/ --receptors {receptors}  --output glad_full
 ```
 
 😉 Now that we finished the target-conditioned cyclic peptide generation!
@@ -246,7 +246,11 @@ python Evaluation/filter_ddG.py rosetta_ddG_diff_full.csv {diff_full} energy_fai
 
 <diff_full> now contains the final structures of generated cyclic peptides.
 
-### 4.2 Affinity
+### 4.2 Chirality filter
+
+AAA
+
+### 4.3 Affinity
 
 First, calculate Rosetta ddG and Vina score. **Note that** the [**Vina**](https://vina.scripps.edu) command line in `vina_analysis.py` and the [**RosettaScript**](https://rosettacommons.org) path in `rosetta_analysis.py` need to be changed.
 
@@ -264,7 +268,7 @@ python Evaluation/select_best.py -i Rosetta_ddG_Diff_Final.csv -o bestddG_Diff.c
 python Evaluation/select_best.py -i Vina_Diff.csv -o bestVina_Diff.csv
 ```
 
-### 4.3 Structure Validity
+### 4.4 Structure Validity
 
 We use [**PLIP**](https://plip-tool.biotec.tu-dresden.de/plip-web/plip/index) to analyze interface interactions and summarize the proportions of each types of interaction.
 
@@ -281,7 +285,7 @@ We use Ramachadran plot to evaluate the validity of cyclic peptides themselves.
 python Evaluation/rama_analysis.py -i Diff_Final.list -o Rama_Diff.csv -c <cores>
 ```
 
-### 4.4 Wet-lab Compatibility
+### 4.5 Wet-lab Compatibility
 
 We calculate GRAVY, logP, and rTPSA to assess the synthesis feasiblity and aggregation propensity of cyclic peptides.
 
@@ -290,7 +294,7 @@ python Evaluation/water_or_oil.py -i Diff_Final.list -o WoO_Diff.csv --chain_id 
 python Evaluation/GRAVY_calculator.py -i Diff_Final.list -o GRAVY_Diff.csv --chain_id L -c 4
 ```
 
-### 4.5 Diversity, Novelty and Self-Consistency
+### 4.6 Diversity, Novelty and Self-Consistency
 
 For diversity, we cluster the generated structures by cyclic-aware rmsd and Foldseek
 
