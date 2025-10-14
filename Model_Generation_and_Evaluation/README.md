@@ -230,7 +230,7 @@ The evaluation scripts used here are quite similar to those used for dataset eva
 
 ### 4.1 Energy filter
 
-First, we use rosetta ddG to check if the binding interfaces are designed reasonable. Before running, you may need to modify line34 of `rosetta_analysis.py` to change the path to .xml file.
+First, we use rosetta ddG to check if the binding interfaces are designed reasonable. Before running, you may need to modify line35 of `rosetta_analysis.py` to change the path to .xml file.
 
 ```
 find {diff_full} -name "*.pdb" > diff_full.list
