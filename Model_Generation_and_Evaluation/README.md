@@ -246,11 +246,7 @@ python Evaluation/filter_dG.py rosetta_dG_diff_full.csv {diff_full} energy_faile
 
 <diff_full> now contains the final structures of generated cyclic peptides.
 
-### 4.2 Chirality filter
-
-AAA
-
-### 4.3 Affinity
+### 4.2 Affinity
 
 First, calculate Rosetta ddG and Vina score. **Note that** the [**Vina**](https://vina.scripps.edu) command line in `vina_analysis.py` and the [**RosettaScript**](https://rosettacommons.org) path in `rosetta_analysis.py` need to be changed.
 
@@ -268,7 +264,7 @@ python Evaluation/select_best.py -i Rosetta_dG_Diff_Final.csv -o bestdG_Diff.csv
 python Evaluation/select_best.py -i Vina_Diff.csv -o bestVina_Diff.csv
 ```
 
-### 4.4 Structure Validity
+### 4.3 Structure Validity
 
 We use [**PLIP**](https://plip-tool.biotec.tu-dresden.de/plip-web/plip/index) to analyze interface interactions and summarize the proportions of each types of interaction.
 
@@ -285,7 +281,7 @@ We use Ramachadran plot to evaluate the validity of cyclic peptides themselves.
 python Evaluation/rama_analysis.py -i Diff_Final.list -o Rama_Diff.csv -c <cores>
 ```
 
-### 4.5 Wet-lab Compatibility
+### 4.4 Wet-lab Compatibility
 
 We calculate GRAVY, logP, and rTPSA to assess the synthesis feasiblity and aggregation propensity of cyclic peptides.
 
@@ -294,7 +290,7 @@ python Evaluation/water_or_oil.py -i Diff_Final.list -o WoO_Diff.csv --chain_id 
 python Evaluation/GRAVY_calculator.py -i Diff_Final.list -o GRAVY_Diff.csv --chain_id L -c 4
 ```
 
-### 4.6 Diversity, Novelty and Self-Consistency
+### 4.5 Diversity, Novelty and Self-Consistency
 
 For diversity, we cluster the generated structures by cyclic-aware rmsd and Foldseek
 
