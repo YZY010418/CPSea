@@ -32,7 +32,7 @@ def process_one(pdb_file, output_csv):
         "/data_hdd/home/yangziyi/Tools/rosetta.binary.ubuntu.release-371/main/source/bin/rosetta_scripts.default.linuxgccrelease",
         "-s", pdb_file,
         "-in:file:native", pdb_file,
-        "-parser:protocol", "interface_analyze_ours.xml",
+        "-parser:protocol", "interface_analyze.xml",
         "-out:file:scorefile", output_csv,
         "-out:file:scorefile_format", "json",
         "-out:file:score_only"
