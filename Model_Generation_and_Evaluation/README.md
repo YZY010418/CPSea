@@ -257,14 +257,14 @@ First, calculate Rosetta ddG and Vina score. **Note that** the [**Vina**](https:
 ```
 find {diff_full} -name "*.pdb" > Diff_Final.list
 python Evaluation/rosetta_analysis.py -i Diff_Final.list -o Rosetta_Diff_Final.sc -c <cores>
-python Evaluation/ddG_extractor.py -i Rosetta_Diff_Final.sc -o Rosetta_ddG_Diff_Final.csv
+python Evaluation/ddG_extractor.py -i Rosetta_Diff_Final.sc -o Rosetta_dG_Diff_Final.csv
 python Evaluation/vina_analysis.py -i Diff_Final.list -o Vina_Diff.csv -c <cores>
 ```
 
 Then, select the best for each target
 
 ```
-python Evaluation/select_best.py -i Rosetta_ddG_Diff_Final.csv -o bestddG_Diff.csv
+python Evaluation/select_best.py -i Rosetta_dG_Diff_Final.csv -o bestdG_Diff.csv
 python Evaluation/select_best.py -i Vina_Diff.csv -o bestVina_Diff.csv
 ```
 
