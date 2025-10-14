@@ -234,7 +234,7 @@ First, we use rosetta ddG to check if the binding interfaces are designed reason
 
 ```
 find {diff_full} -name "*.pdb" > diff_full.list
-python Evaluation/rosetta_analysis.py -i diff_full.list -o rosetta_diff_full.sc -p 64
+python Evaluation/rosetta_analysis.py -i diff_full.list -o rosetta_diff_full.sc -c 64
 python Evaluation/ddG_extractor.py -i rosetta_diff_full.sc -o rosetta_ddG_diff_full.csv
 ```
 
