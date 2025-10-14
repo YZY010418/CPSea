@@ -70,7 +70,7 @@ def main():
         f = open(list_file_path, 'r', encoding='utf-8') 
         tbar = tqdm(total=2640000)
         partial_callback = partial(callback, tbar=tbar)
-        pool = Pool(cores=num_cores)
+        pool = Pool(processes=num_cores)
         for pdb in f:
             pool.apply_async(func=process_one, args=(pdb.strip(), output_csv), callback=partial_callback)
         pool.close()
