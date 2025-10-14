@@ -16,7 +16,7 @@
     <FILTERS>
         <!--ddG w/ and w/o repack/min-->
         <Ddg name="ddg"  threshold="-25" jump="1" repeats="5" repack="1" confidence="0" scorefxn="score"/>
-        <Ddg name="ddg_norepack"  threshold="-25" jump="1" repeats="1" repack="0" confidence="0" scorefxn="score"/>
+        <Ddg name="dg"  threshold="-25" jump="1" repeats="1" repack="0" confidence="0" scorefxn="score"/>
     </FILTERS>
     
     <MOVERS>
@@ -24,7 +24,7 @@
     <APPLY_TO_POSE>
     </APPLY_TO_POSE>
     <PROTOCOLS>
-        <Add filter="ddg_norepack"/>
+        <Add filter="dg"/>
     </PROTOCOLS>
 </ROSETTASCRIPTS>
 
