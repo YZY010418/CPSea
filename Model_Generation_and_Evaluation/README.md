@@ -292,11 +292,9 @@ python Evaluation/GRAVY_calculator.py -i Diff_Final.list -o GRAVY_Diff.csv --cha
 
 ### 4.5 Diversity, Novelty and Self-Consistency
 
-For diversity, we cluster the generated structures by cyclic-aware rmsd and Foldseek
+For diversity, we cluster the generated structures by Foldseek
 
 ```
-python Evaluation/mp_rmsd_cyclic.py --rmsd Diff_rmsd.npy --hist Diff_rmsd.png --cluster Diff_rmsd.csv --name_list Diff_Final.list --num_cores 48
-
 foldseek easy-multimercluster {diff_full}  Diff_foldseek_cluster/clu  Diff_foldseek_cluster --multimer-tm-threshold 0.65 \
 --chain-tm-threshold 0.5 --interface-lddt-threshold 0.65 --alignment-type 2 --cov-mode 0 --min-seq-id 0 --threads 32
 ```
