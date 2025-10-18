@@ -1,6 +1,6 @@
 😄 Hi, this is **CPSea**, a large-scale cyclic peptide-protein complex dataset derived from AlphaFold Database. We hope that you can always find the right part out of the CPSea to fulfill your requirements. 🌊
 
-🗺️ This GitHub site mainly focuses on scripts and tutorials dataset generation and evaluation, as well as the evaluation of target-conditioned cyclic peptide design models that are trained on CPSea. Check out our [**Kaggle**](https://www.kaggle.com/datasets/ziyiyang180104/cpsea) and [**Zenodo**](https://zenodo.org/records/16794716) sites for clean data, index files and property files.
+🗺️ This GitHub site mainly focuses on scripts and tutorials dataset generation and evaluation, as well as the evaluation of target-conditioned cyclic peptide design models that are trained on CPSea. Check out our [**Kaggle**](https://www.kaggle.com/datasets/ziyiyang180104/cpsea) and [**Zenodo**]([https://zenodo.org/records/16794716](https://zenodo.org/records/17324994) sites for clean data, index files and property files.
 
 💡 In this repository, we provide scripts and introductions for dataset generation and evaluation, and also how to use re-trained models to generate cyclic peptides and to evaluate the model outputs as we did in our paper. These models are just used to prove that it is practical to use CPSea to develop a proper cyclic peptide design model. The full potential of CPSea in developing cyclic peptide design models is under testing, and will be released in near future.
 
