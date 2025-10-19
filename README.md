@@ -160,7 +160,7 @@ python Dataset_Evaluation/check_qtm_max_average.py <out_file> (--ignore_R)
 
 Please check the [**introduction file**](Model_Generation_and_Evaluation/README.md) for details.
 
-Related weights for three re-trained models can be downloaded from [**Kaggle**](https://www.kaggle.com/datasets/ziyiyang180104/cpsea) or [**Zenodo**](https://zenodo.org/records/16794716).
+Related weights for three re-trained models can be downloaded from [**Kaggle**](https://www.kaggle.com/datasets/ziyiyang180104/cpsea) or [**Zenodo**](https://zenodo.org/records/17324994).
 
 ## Contact
 
