@@ -40,7 +40,7 @@ In which are CPSea datasets derived from AFDB and PDB.
 
 ## Dataset Generation
 
-🚧 We will release the soure codes for data generation after our paper is online
+⏰ We will release the soure codes soon
 
 ## Dataset Evaluation
 
