@@ -32,7 +32,7 @@ We also provide environment files for dataset evaluation in [Dataset_Evaluation/
 We store the main body of datasets in Kaggle and Zenodo. To download clean data of datasets, run:
 
 ```
-curl -C - -o CPSea.zip https://zenodo.org/api/records/16417466/files-archive
+curl -C - -o CPSea.zip https://zenodo.org/api/records/17324994/files-archive
 ```
 
 In which are CPSea datasets derived from AFDB and PDB.
@@ -40,7 +40,7 @@ In which are CPSea datasets derived from AFDB and PDB.
 
 ## Dataset Generation
 
-🚧 We will release the soure codes for data generation after publishing our paper ~
+🚧 We will release the soure codes for data generation after our paper is online
 
 ## Dataset Evaluation
 
