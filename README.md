@@ -6,7 +6,7 @@
 
 [**Download Current Datasets**](#download-current-datasets)
 
-[**Dataset Generation**](#dataset-generation)
+[**Dataset Curation**](#dataset-curation)
 
 [**Dataset Evaluation**](#dataset-evaluation)
 
@@ -38,7 +38,7 @@ curl -C - -o CPSea.zip https://zenodo.org/api/records/17324994/files-archive
 In which are CPSea datasets derived from AFDB and PDB.
 
 
-## Dataset Generation
+## Dataset Curation
 
 ⏰ We will release the soure codes soon
 
