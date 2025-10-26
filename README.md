@@ -58,7 +58,24 @@ python Dataset_Curation/FindCP/find_cp_mp.py
 This will generate the initial cyclic peptide protein complex structures.
 
 ### Cyclization and minimize
+First, please modify lines 56-61 and line 71, including:
+* save_path, the path to the directory for saving generated structures, metadata, and other files.
+* root, the path to the directory containing initial cyclic peptide protein complex structures.
+* input_metadata, the metadata file generated from `find_cp_mp.py`.
+* N_CPU, number of processors used in the job.
+Then, run:
+```
+python Dataset_Curation/Relax/relax_mp.py
+```
+This will generate three directories in the save_path: CysCysRelaxed, HeadTailRelaxed and IsoPepRelaxed, and also a energy file containing the energy before and after minimization. 
 
+Finally, we discard structures with high energy or improper chirality by running:
+```
+python Dataset_Curation/Relax/Post_Process.py CysCysRelaxed HeadTailRelaxed IsoPepRelaxed energy_data.tsv -p <N_CPU> -t <energy_threshold>(default 0)
+```
+This script will automatically check energy and chirality for each structure, and move structures with energy > 0 into energy_failed, and structures with wrong chirality into chial_failed.
+
+The structures remain in CysCysRelaxed, HeadTailRelaxed and IsoPepRelaxed are the final dataset.
 
 ## Dataset Evaluation
 
