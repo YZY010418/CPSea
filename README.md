@@ -42,9 +42,23 @@ In which are CPSea datasets derived from AFDB and PDB.
 
 ### Find Potential Cyclic Peptides
 
-First, please modify lines 67-94 in `Dataset_Curation/FindCP/find_cp_mp.py`, to designate the input and output files, including:
-· Input list, a list file containing file names of the protein structure database.
-· check
+First, please modify lines 67-94 in `Dataset_Curation/FindCP/find_cp_mp.py`, to designate the input and output files. Important parameters are:
+* input_list, a list file containing file names of the protein structure database.
+* root, the path to the directory containing protein structures in the .pdb.gz format.
+* saved_dir, the path to the directory for saving generated structures, metadata, and other files.
+* N_CPU, number of processors used in the job.
+* tbar, a tqdm bar for monitoring the process, the number of input structures needs to be set mannually.
+* metadata, file path that saves metadata.
+* finished, file path that saves file names that have been processed.
+* good_folder_path and average_folder_path, directory paths for saving "good" and "average" results based on relative terminal BSA.
+After customerizing these parameters, run:
+```
+python Dataset_Curation/FindCP/find_cp_mp.py
+```
+This will generate the initial cyclic peptide protein complex structures.
+
+### Cyclization and minimize
+
 
 ## Dataset Evaluation
 
