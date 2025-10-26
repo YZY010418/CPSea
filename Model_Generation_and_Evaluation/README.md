@@ -35,7 +35,7 @@ We provide environment files for model generation and evaluation in [Environment
 * `plip_vina.yml` is for PLIP and Vina analyses
 * `evaluation.yml` is for the rest evaluations
 
-🚧 Please note that these environments have not been tested on another computer, and the whole protocol has not been tested neither. Please let us know if there are any questions.
+Please note that these environments have not been tested on another computer, and the whole protocol has not been tested neither. Please let us know if there are any questions.
 
 Now that we are ready for the following steps.
 
