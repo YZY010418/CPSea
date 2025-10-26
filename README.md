@@ -28,7 +28,7 @@ We also provide environment files for dataset evaluation in [Dataset_Evaluation/
 * `plip_vina.yml` is for PLIP and Vina evaluations
 * `evaluation.yml` is for the rest evaluations
 
-🚧 Please note that these environments have not been tested in another computer yet, nor the following data evaluation protocols. We will try to test these soon. If there are any questions, please feel free to [contact](#contact) us. Thank you!
+Please note that these environments have not been tested in another computer yet, nor the following data evaluation protocols. We will try to test these soon. If there are any questions, please feel free to [contact](#contact) us. Thank you!
 
 ---
 
@@ -61,6 +61,11 @@ After customerizing these parameters, run:
 python Dataset_Curation/FindCP/find_cp_mp.py
 ```
 This will generate the initial cyclic peptide protein complex structures.
+
+For experimental databases like PDB, because the format is .pdb instead of .pdb.gz, and there is no pLDDT values, we use a modified version for initial cyclic peptide identification. Please make similar modification in `Dataset_Curation/FindCP/find_cp_mp_PDB.py`, and run
+```
+python Dataset_Curation/FindCP/find_cp_mp_PDB.py
+```
 
 ### Cyclization and Minimize
 First, please modify lines 56-61 and line 71, including:
