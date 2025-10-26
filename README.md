@@ -40,7 +40,11 @@ In which are CPSea datasets derived from AFDB and PDB.
 
 ## Dataset Curation
 
-⏰ We will release the soure codes soon
+### Find Potential Cyclic Peptides
+
+First, please modify lines 67-94 in `Dataset_Curation/FindCP/find_cp_mp.py`, to designate the input and output files, including:
+· Input list, a list file containing file names of the protein structure database.
+· check
 
 ## Dataset Evaluation
 
