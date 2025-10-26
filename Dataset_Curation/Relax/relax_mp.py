@@ -58,7 +58,7 @@ if __name__ == '__main__':
         # Path to directory where relaxed structs are saved, and metadata for relax input
         save_path = '/data_hdd/home/yangziyi/Projects/CyclicPep/Relax/1015_PDB_Remake'
         root = '/data_hdd/home/yangziyi/Projects/CyclicPep/FindCycPep/0725_PDB/good_candidates/'
-        input_metadata = '/data_hdd/home/yangziyi/Projects/CyclicPep/FindCycPep/0725_PDB/metadata_0725_PDB_good.csv'
+        input_metadata = '/data_hdd/home/yangziyi/Projects/CyclicPep/FindCycPep/0725_PDB/metadata_0725_PDB_good.tsv'
 
         # Make directories for relaxed structs to be saved
         cys_folder_path = os.path.join(save_path,'CysCysRelaxed')
