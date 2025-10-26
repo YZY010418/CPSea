@@ -8,6 +8,9 @@
 
 [**Dataset Curation**](#dataset-curation)
 
+* [Find Potential Cyclic Peptides](#find-potential-cyclic-peptides)
+* [Cyclization and Minimize](#cyclization-and-minimize)
+
 [**Dataset Evaluation**](#dataset-evaluation)
 
 * [Structure Validity](#structure-validity)
@@ -57,7 +60,7 @@ python Dataset_Curation/FindCP/find_cp_mp.py
 ```
 This will generate the initial cyclic peptide protein complex structures.
 
-### Cyclization and minimize
+### Cyclization and Minimize
 First, please modify lines 56-61 and line 71, including:
 * save_path, the path to the directory for saving generated structures, metadata, and other files.
 * root, the path to the directory containing initial cyclic peptide protein complex structures.
