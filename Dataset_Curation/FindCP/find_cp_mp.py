@@ -64,8 +64,8 @@ def callback(return_data, metadata, finished, tbar):
 def main(saved_dir, N_CPU, input_list, root, good_folder_path, average_folder_path):
     
     f = open(input_list)
-    metadata = open(os.path.join(saved_dir,'metadata_0424_001.csv'),'a')
-    finished = open(os.path.join(saved_dir,'finished_0424_001.csv'),'a')
+    metadata = open(os.path.join(saved_dir,'metadata_0424_001.tsv'),'a')
+    finished = open(os.path.join(saved_dir,'finished_0424_001.txt'),'a')
 
     tbar = tqdm(total=5988928)
     partial_callback = partial(callback, metadata=metadata, finished=finished, tbar=tbar)
