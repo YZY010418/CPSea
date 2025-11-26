@@ -68,12 +68,12 @@ def main():
     print("\n[Clusters]")
     print(f"  Train Clusters: {actual_train_clusters}")
     print(f"  Valid Clusters: {actual_valid_clusters}")
-    print(f"  Actual Valid Cluster Ratio: {actual_ratio:.4f}")
+    print(f"  Actual Valid Cluster Ratio: {actual_cluster_ratio:.4f}")
     
     print("\n[Members]")
     print(f"  Total Members: {total_members}")
     print(f"  Valid Members: {len(valid_members)}")
-    print(f"  Actual Valid Member Ratio: {actual_member_ratio}")
+    print(f"  Actual Valid Member Ratio: {actual_member_ratio:.4f}")
 
 if __name__ == '__main__':
     main()
