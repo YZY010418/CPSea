@@ -120,8 +120,7 @@ Then, run:
 python {path_to_pepflow}/models_con/pep_dataloader.py
 ```
 
-Now, we can do inference. First, modify `configs/learn_angle.yaml`, change the structure_dir, dataset_dir and name of the 
-generate dataset. Second, make an output diectory (since the script does not create the directory itself). Then run:
+Now, we can do inference. First, modify `configs/learn_angle.yaml`, change the structure_dir, dataset_dir and name of the generate dataset. Second, make an output diectory (since the script does not create the directory itself). Finally, delete the torch_scatter import in `data/utils.py` because this is not in environment and is not used in the script. Then run:
 
 ```
 python {path_to_pepflow}/models_con/inference.py --config configs/learn_angle.yaml  --device cuda:0 --ckpt path/to/retrained/ckpt --output output/path \
