@@ -8,6 +8,8 @@
 
 📄 Please refer to our [paper](https://openreview.net/forum?id=CfOsKx3jF8) for other details.
 
+---
+
 [**Download Current Datasets**](#download-current-datasets)
 
 [**Dataset Curation**](#dataset-curation)
