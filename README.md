@@ -6,6 +6,8 @@
 
 💡 In this repository, we provide scripts and introductions for dataset generation and evaluation, and also how to use re-trained models to generate cyclic peptides and to evaluate the model outputs as we did in our paper. These models are just used to prove that it is practical to use CPSea to develop a proper cyclic peptide design model. The full potential of CPSea in developing cyclic peptide design models is under testing, and hopefully will be released in near future.
 
+📄 Please refer to our [paper](https://openreview.net/forum?id=CfOsKx3jF8) for other details.
+
 [**Download Current Datasets**](#download-current-datasets)
 
 [**Dataset Curation**](#dataset-curation)
