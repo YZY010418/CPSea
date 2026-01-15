@@ -6,6 +6,8 @@
 
 💡 In this repository, we provide scripts and introductions for dataset generation and evaluation, and also how to use re-trained models to generate cyclic peptides and to evaluate the model outputs as we did in our paper. These models are just used to prove that it is practical to use CPSea to develop a proper cyclic peptide design model. The full potential of CPSea in developing cyclic peptide design models is under testing, and hopefully will be released in near future.
 
+👀 You can take a galance of our dataset in `CPSea_samples.tar.gz`, in which we present 100 complex structures randomly sampled from the dataset.
+
 📄 Please refer to our [paper](https://openreview.net/forum?id=CfOsKx3jF8) for other details.
 
 ---
