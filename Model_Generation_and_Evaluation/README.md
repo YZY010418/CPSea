@@ -135,7 +135,9 @@ python {path_to_pepflow}/models_con/sample.py --SAMPLEDIR output/path/of/inferen
 
 ### 2.3 PepGlad
 
-It is very simple to run PepGlad. Similar to DiffPepBuilder, we still need a csv file containing "pdb_names" and "length" columns. The re-trained weight can be renamed to `codesign.ckpt` under `{path_to_pepglad}/checkpoints`, the scripts will automatically load this file.
+Similar to DiffPepBuilder, we still need a csv file containing "pdb_names" and "length" columns. The re-trained weight can be renamed to `codesign.ckpt` under `{path_to_pepglad}/checkpoints`, the scripts will automatically load this file.
+
+Because PepGLAD is a E(3)-equivariant model, generated peptides are mixed with L and D amino acids. Therefore, we opened the `idealize` to enforce residues to adopt L chirality. This is in line 466 of `{PepGLAD}/models/autoencoder/model.py`.
 
 ```
 python {path_to_pepglad}/batch_generate.py --length_csv <length_csv> --input_dir <receptor_PDB_dir> --pocket_dir <transformed_json> --output_dir <out_dir>
@@ -252,7 +254,7 @@ First, calculate Rosetta ddG and Vina score. **Note that** the [**Vina**](https:
 ```
 find {diff_full} -name "*.pdb" > Diff_Final.list
 python Evaluation/rosetta_analysis.py -i Diff_Final.list -o Rosetta_Diff_Final.sc -c <cores>
-python Evaluation/ddG_extractor.py -i Rosetta_Diff_Final.sc -o Rosetta_dG_Diff_Final.csv
+python Evaluation/dG_extractor.py -i Rosetta_Diff_Final.sc -o Rosetta_dG_Diff_Final.csv
 python Evaluation/vina_analysis.py -i Diff_Final.list -o Vina_Diff.csv -c <cores>
 ```
 
