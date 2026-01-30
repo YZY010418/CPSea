@@ -6,7 +6,7 @@ import multiprocessing as mp
 from functools import partial
 from tqdm import tqdm
 from Bio.PDB.PDBIO import PDBIO
-from find_cp_0424 import find_cyclic_peptide
+from find_cp import find_cyclic_peptide
 from pathlib import Path
 import gzip
 from io import StringIO
