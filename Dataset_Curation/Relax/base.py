@@ -12,10 +12,7 @@ LENGTH = unit.angstroms
 
 os.environ['OPENMM_CPU_THREADS'] = '1'
 
-custom_xml = os.path.abspath(os.path.join(
-    os.path.dirname(__file__),
-    'custom', 'residue.xml'
-))
+custom_xml = os.path.abspath(os.path.join(os.path.dirname(__file__), 'residue.xml'))
 
 class ForceFieldMinimizer(object):
 
