@@ -215,6 +215,6 @@ Related weights for three re-trained models can be downloaded from [**Kaggle**](
 
 ## Contact
 
-📞 This repository is still under development. If there are any questions about any protocols, please do not hesitate to contact yangzy23@mails.tsinghua.edu.cn. Thank you for your interest in our CPsea!
+📞 If there are any questions, please do not hesitate to contact yangzy23@mails.tsinghua.edu.cn. Thank you for your interest in our CPsea!
 
 
